@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agro1 — Painel de Cotações de Grãos | Leo Deitos</title>
+  <meta name="description" content="Estudo de caso do dashboard Agro1: painel de cotações, custo e margem de soja, milho e trigo, desenvolvido em Power BI." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230a0f1c%22/><path d=%22M20 70 L45 30 L60 55 L80 25%22 stroke=%22%233b82f6%22 stroke-width=%228%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 16 L10 8 L14 13 L20 5" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-name">Leo Deitos</span>
+        <span class="brand-tagline">Dashboards &amp; Business Intelligence</span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html#projetos">Projetos</a>
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="detail-hero">
+    <div class="container">
+      <a class="back-link" href="../index.html#projetos">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar aos projetos
+      </a>
+      <h1>Agro1 — Painel de Cotações de Grãos</h1>
+      <p class="subtitle">
+        Dashboard para acompanhamento diário de preço, custo e margem de soja, milho e trigo,
+        cruzando cotação de mercado com volume colhido, exportado e produção por região.
+      </p>
+      <div class="meta-row">
+        <span class="tag">Power BI</span>
+        <span class="tag tag-green">Agronegócio</span>
+        <span class="tag tag-purple">Grãos</span>
+        <span class="tag">Séries históricas 2019–2024</span>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="label">Volume colhido (total)</div>
+          <div class="value">30 Mi ton</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Volume exportado</div>
+          <div class="value">11 Mi ton</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Cultura líder em margem</div>
+          <div class="value">Soja</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Margem bruta — Soja</div>
+          <div class="value">R$ 54,09/sc</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-body-section">
+    <div class="container">
+      <div class="detail-body">
+        <div>
+          <h2>Sobre o painel</h2>
+          <p>
+            O Agro1 reúne, em uma única visão, o que está acontecendo com as três principais
+            culturas do portfólio — soja, milho e trigo. A página de Visão Geral compara preço do
+            dia, custo médio e margem bruta por cultura, apontando automaticamente qual delas está
+            liderando em margem e em volume. As páginas individuais de cada cultura aprofundam a
+            análise com série histórica de produção por ano e UF, produção por mesorregião e a
+            variação mensal de preço (mínimo, médio e máximo).
+          </p>
+          <p>
+            O objetivo é dar a quem decide — compra, venda ou fixação de preço — uma leitura rápida
+            de "onde estamos" sem precisar cruzar planilhas na mão.
+          </p>
+
+          <h2 style="margin-top: 36px;">Principais funcionalidades</h2>
+          <ul class="feature-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Comparativo de preço, custo e margem bruta por cultura, com destaque automático da cultura líder.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Série histórica de produção por ano e estado (PR, RS, SC), de 2019 a 2024.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Produção, área plantada e produtividade média por mesorregião.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tabela de preço mensal com mínimo, médio e máximo, para leitura de volatilidade.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Insight textual dinâmico resumindo a variação de margem e preço mais recente.
+            </li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h3>Ficha técnica</h3>
+          <ul class="side-list">
+            <li><span>Ferramenta</span><span>Power BI</span></li>
+            <li><span>Culturas</span><span>Soja, Milho, Trigo</span></li>
+            <li><span>Período coberto</span><span>2019 – 2024</span></li>
+            <li><span>Unidade de preço</span><span>R$ / saca</span></li>
+            <li><span>Regiões</span><span>PR, RS, SC</span></li>
+            <li><span>Páginas</span><span>4</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Screenshots</div>
+        <h2>Todas as páginas</h2>
+        <p>Clique em uma imagem para ampliar.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Visão Geral</h3>
+            <span>Comparativo entre culturas</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Agro1/01-visao-geral.png" alt="Página de visão geral do dashboard Agro1" loading="lazy" />
+        </figure>
+
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Soja</h3>
+            <span>Produção, preço e margem</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Agro1/02-soja.png" alt="Página de soja do dashboard Agro1" loading="lazy" />
+        </figure>
+
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Milho</h3>
+            <span>Produção, preço e margem</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Agro1/03-milho.png" alt="Página de milho do dashboard Agro1" loading="lazy" />
+        </figure>
+
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Trigo</h3>
+            <span>Produção, preço e margem</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Agro1/04-trigo.png" alt="Página de trigo do dashboard Agro1" loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Leo Deitos. Todos os direitos reservados.</span>
+      <a href="../index.html#projetos">← Voltar ao portfólio</a>
+    </div>
+  </footer>
+
+  <div class="lightbox" data-lightbox>
+    <button class="lightbox-close" data-lightbox-close aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <img src="" alt="" />
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
