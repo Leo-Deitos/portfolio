@@ -309,6 +309,44 @@ section {
   transform: scale(1.04);
 }
 
+.project-card-media--mock svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.project-card:hover .project-card-media--mock svg {
+  transform: scale(1.04);
+}
+
+.media-live-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(22, 199, 132, 0.15);
+  border: 1px solid rgba(22, 199, 132, 0.35);
+  color: #4fdba3;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.media-live-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #16c784;
+  box-shadow: 0 0 0 3px rgba(22, 199, 132, 0.2);
+}
+
 .project-card-body {
   padding: 22px 24px 24px;
   display: flex;

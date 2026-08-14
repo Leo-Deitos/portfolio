@@ -1,0 +1,10 @@
+# Power BI Desktop route (abandoned in favor of the HTML/JS dashboard) —
+# keeping only the source data + generator for provenance.
+powerbi/Agro1/Agro1.Report/
+powerbi/Agro1/Agro1.SemanticModel/
+powerbi/Agro1/Agro1.pbip
+powerbi/Agro1/_brief/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
