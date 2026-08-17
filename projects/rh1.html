@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RH1 — Painel de Gestão de Pessoas | Leo Deitos</title>
+  <meta name="description" content="Estudo de caso do dashboard RH1: painel de headcount, turnover, absenteísmo e horas extras, com análise completa dos indicadores, desenvolvido em Power BI." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230a0f1c%22/><path d=%22M20 70 L45 30 L60 55 L80 25%22 stroke=%22%233b82f6%22 stroke-width=%228%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 16 L10 8 L14 13 L20 5" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-name">Leo Deitos</span>
+        <span class="brand-tagline">Dashboards &amp; Business Intelligence</span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html#projetos">Projetos</a>
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="detail-hero">
+    <div class="container">
+      <a class="back-link" href="../index.html#projetos">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar aos projetos
+      </a>
+      <h1>RH1 — Painel de Gestão de Pessoas</h1>
+      <p class="subtitle">
+        Dashboard de People Analytics para acompanhar headcount, turnover, qualidade de contratação,
+        absenteísmo e horas extras — com menu de navegação próprio e grupo de cálculo para trocar a
+        métrica em destaque sem duplicar visuais.
+      </p>
+      <div class="meta-row">
+        <span class="tag">Power BI</span>
+        <span class="tag tag-green">Recursos Humanos</span>
+        <span class="tag tag-purple">Dados fictícios</span>
+        <span class="tag">4 páginas</span>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="label">Headcount ativo</div>
+          <div class="value">249</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Turnover (último ano)</div>
+          <div class="value">15,47%</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Massa salarial</div>
+          <div class="value">R$ 872 Mil</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Má contratações</div>
+          <div class="value">12,09%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="embed-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Ao vivo</div>
+        <h2>Painel interativo</h2>
+        <p>Publicado direto do Power BI Service — filtre, navegue entre páginas e use o menu lateral (ícone ☰).</p>
+      </div>
+      <div class="embed-frame-wrap">
+        <iframe
+          title="RH1-dashboard"
+          src="https://app.powerbi.com/view?r=eyJrIjoiMDhjNWZjZTEtOTRlYi00NDNiLTg2M2MtMTFhZGE3NzcyN2NkIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9"
+          frameborder="0"
+          allowfullscreen="true"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-body-section">
+    <div class="container">
+      <div class="detail-body">
+        <div>
+          <h2>Sobre o painel</h2>
+          <p>
+            O RH1 acompanha o ciclo de vida do colaborador — da contratação ao desligamento — cruzando
+            dados cadastrais, de folha e de ponto em um único modelo. A página Funcionários traz a big
+            picture (headcount, turnover, contratações, demissões, massa salarial) segmentável por
+            escolaridade, cargo, faixa etária e gênero. As páginas de Absenteísmo e Horas Extras
+            aprofundam o custo de mão de obra fora da jornada normal.
+          </p>
+          <p>
+            Um grupo de cálculo ("Seleção de Medidas") permite trocar a métrica exibida nos gráficos de
+            barra — Contratações, Demissões, Headcount, Massa Salarial ou % Turnover — sem precisar de
+            um visual duplicado para cada indicador.
+          </p>
+
+          <h2 style="margin-top: 36px;">Principais funcionalidades</h2>
+          <ul class="feature-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Menu de navegação lateral (drawer) próprio, com bookmarks e sem sair da página atual.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Grupo de cálculo para alternar a métrica em destaque nos gráficos de barra.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Segmentação de turnover por causa (Ativo, Passivo, Espontâneo) e por tempo de retenção.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Indicador de má contratação (desligamento antes de 60 dias) e leque salarial.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Custo de horas extras e absenteísmo cruzado com folha de pagamento real.
+            </li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h3>Ficha técnica</h3>
+          <ul class="side-list">
+            <li><span>Ferramenta</span><span>Power BI</span></li>
+            <li><span>Colaboradores na base</span><span>860</span></li>
+            <li><span>Linhas de folha</span><span>27.462</span></li>
+            <li><span>Período coberto</span><span>2002 – 2020</span></li>
+            <li><span>Medidas DAX</span><span>20+</span></li>
+            <li><span>Páginas</span><span>4</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Screenshot</div>
+        <h2>Página Funcionários</h2>
+      </div>
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Funcionários</h3>
+            <span>Headcount, turnover e perfil do quadro</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/RH1/01-funcionarios.png" alt="Página Funcionários do dashboard RH1" loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="analysis-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Relatório</div>
+        <h2>Análise dos indicadores</h2>
+        <p>Leitura dos dados por trás do painel — números extraídos diretamente da base, não só da tela.</p>
+      </div>
+
+      <div class="analysis-block">
+        <h3>1. Panorama geral</h3>
+        <p>
+          A base reúne <strong>860 colaboradores</strong> ao longo do histórico (2002–2020), dos quais
+          <strong>249 seguem ativos</strong> na última data de referência. Isso significa que
+          <strong>611 já passaram pela empresa e saíram</strong> — uma rotatividade acumulada de
+          71% da base histórica, natural para uma janela de quase 20 anos, mas que reforça a
+          importância de olhar turnover por período, não só o número acumulado.
+        </p>
+        <p>
+          A massa salarial dos ativos soma <strong>R$ 871.825,84</strong>. Dividido pelo headcount,
+          isso dá um salário médio de <strong>R$ 3.501,31</strong> — mas o leque salarial real é muito
+          mais amplo do que essa média sugere (ver seção 5).
+        </p>
+      </div>
+
+      <div class="analysis-block">
+        <h3>2. Contratações e demissões ao longo do tempo</h3>
+        <p>
+          O volume de contratações não é linear — há três picos claros de expansão: <strong>2013
+          (110 contratações)</strong>, <strong>2011 (62)</strong> e <strong>2012 (57)</strong>, um
+          ciclo de crescimento forte de três anos seguidos. Depois de 2013 o ritmo desacelera e se
+          estabiliza numa faixa de 48 a 75 contratações por ano até 2019.
+        </p>
+        <p>
+          As demissões seguem o mesmo padrão de ciclo, mas defasadas: o pico de desligamentos foi em
+          <strong>2019 (76)</strong>, seguido de <strong>2014 (62)</strong> e <strong>2013 (58)</strong>
+          — indicando que boa parte de quem entrou no ciclo de expansão de 2011-2013 saiu entre um e
+          seis anos depois. 2020 está com apenas 24 contratações e 41 demissões porque a base cobre só
+          até julho daquele ano.
+        </p>
+        <div class="insight-callout">
+          <strong>Leitura:</strong> picos de contratação seguidos por picos de demissão alguns anos
+          depois é o padrão típico de "resposta rápida a expansão de operação, sem estrutura de
+          retenção equivalente". Vale cruzar esses ciclos com metas de produção/expansão da época.
+        </div>
+      </div>
+
+      <div class="analysis-block">
+        <h3>3. Qualidade de contratação e retenção</h3>
+        <table class="data-table">
+          <thead><tr><th>Indicador</th><th>Valor</th></tr></thead>
+          <tbody>
+            <tr><td>Má contratações (desligado antes de 60 dias)</td><td>104 de 612 (12,09%)</td></tr>
+            <tr><td>Desligados entre 60 e 365 dias</td><td>365 (59,6%)</td></tr>
+            <tr><td>Desligados após 365 dias</td><td>142 (23,2%)</td></tr>
+          </tbody>
+        </table>
+        <p>
+          Quase <strong>1 em cada 8 contratações</strong> não passa de dois meses — um sinal de que o
+          processo seletivo, o alinhamento de expectativa na entrevista ou o onboarding têm espaço
+          para melhorar. Mas o dado mais expressivo é outro: <strong>quase 60% dos desligamentos
+          acontecem entre 2 meses e 1 ano</strong> de casa. O risco real de saída não está só na porta
+          de entrada — está concentrado no primeiro ano como um todo.
+        </p>
+        <p>
+          Olhando a causa dos desligamentos: <strong>64,7% são "Passivo"</strong> (iniciativa da
+          empresa), <strong>23,5% "Espontâneo"</strong> (pedido de demissão) e <strong>11,8%
+          "Ativo"</strong>. A empresa puxa o gatilho na maioria dos casos — o que também explica por
+          que má contratação e desligamento no primeiro ano pesam tanto: são decisões de ajuste de
+          quadro, não perdas para o mercado.
+        </p>
+      </div>
+
+      <div class="analysis-block">
+        <h3>4. Perfil do quadro ativo</h3>
+        <table class="data-table">
+          <thead><tr><th>Escolaridade</th><th>Colaboradores</th><th>%</th></tr></thead>
+          <tbody>
+            <tr><td>Ensino Médio Completo</td><td>107</td><td>43,0%</td></tr>
+            <tr><td>Superior Completo</td><td>47</td><td>18,9%</td></tr>
+            <tr><td>Ensino Médio Incompleto</td><td>34</td><td>13,7%</td></tr>
+            <tr><td>Superior Incompleto</td><td>22</td><td>8,8%</td></tr>
+            <tr><td>Outros níveis</td><td>39</td><td>15,6%</td></tr>
+          </tbody>
+        </table>
+        <p>
+          O índice de tecnicidade (ativos com superior completo ou mais) é de <strong>21,7%</strong> —
+          coerente com um quadro majoritariamente operacional: os cargos mais numerosos são
+          <strong>Operador (49)</strong>, <strong>Gestor (22)</strong>, <strong>Ajudante (15)</strong>,
+          <strong>Assistente (13)</strong> e <strong>Resinador (13)</strong>, típicos de indústria de
+          produção/manufatura.
+        </p>
+        <p>
+          O quadro é <strong>61,8% masculino</strong> e concentrado nas faixas
+          <strong>35–44 anos (42,6%)</strong> e <strong>45–54 anos (35,0%)</strong> — juntas, quase
+          80% do headcount. A faixa <strong>15–24 anos representa só 4,0%</strong>, um sinal de alerta
+          para renovação de quadro e plano de sucessão a médio prazo.
+        </p>
+      </div>
+
+      <div class="analysis-block">
+        <h3>5. Remuneração</h3>
+        <p>
+          O leque salarial entre os ativos é de <strong>154,7x</strong> — o maior salário
+          (R$ 39.460,80) equivale a mais de 150 vezes o menor (R$ 255,00). Um leque tão amplo é
+          esperado quando o quadro vai de aprendiz a diretoria, mas merece checagem: vale confirmar se
+          o valor mínimo é mesmo um cargo de entrada em jornada reduzida (ex: aprendiz/jovem
+          aprendiz) e não um erro de lançamento — é o tipo de outlier que compensa investigar antes de
+          usar o número num relatório executivo.
+        </p>
+      </div>
+
+      <div class="analysis-block">
+        <h3>6. Horas extras e absenteísmo</h3>
+        <table class="data-table">
+          <thead><tr><th>Indicador</th><th>Valor</th></tr></thead>
+          <tbody>
+            <tr><td>Massa de horas normais</td><td>R$ 4.762.118,22</td></tr>
+            <tr><td>Horas extras</td><td>R$ 269.109,74 (5,65% do normal)</td></tr>
+            <tr><td>Absenteísmo (faltas, atrasos, atestados)</td><td>R$ 34.000,74 (0,71% do normal)</td></tr>
+          </tbody>
+        </table>
+        <p>
+          O absenteísmo está em nível saudável (abaixo de 1%). Já as horas extras, embora moderadas no
+          agregado (5,65%), estão fortemente concentradas em funções de manutenção e produção:
+          <strong>Mecânico de Manutenção I</strong>, <strong>Resinador I</strong>,
+          <strong>Eletricista de Manutenção Geral I</strong> e <strong>Operador de Ponte Rolante I</strong>
+          lideram o ranking. Esse padrão costuma indicar dimensionamento de equipe apertado nessas
+          funções específicas — vale avaliar se contratar mais nesses cargos sai mais barato do que
+          manter o nível atual de hora extra.
+        </p>
+      </div>
+
+      <div class="analysis-block analysis-block--conclusion">
+        <h3>Conclusões e recomendações</h3>
+        <ul class="feature-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Investigar o processo seletivo e o onboarding: 12% de má contratação + quase 60% de saída
+            no primeiro ano apontam para o mesmo ponto — o alinhamento de expectativa na entrada.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Planejar contratação em ondas menores e mais constantes, em vez de picos seguidos de ondas
+            de desligamento alguns anos depois.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Avaliar reforço de quadro em manutenção/produção para reduzir dependência de hora extra
+            nesses cargos específicos.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Olhar plano de sucessão: só 4% do quadro tem entre 15 e 24 anos, contra quase 80%
+            concentrados entre 35 e 54.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Leo Deitos. Todos os direitos reservados.</span>
+      <a href="../index.html#projetos">← Voltar ao portfólio</a>
+    </div>
+  </footer>
+
+  <div class="lightbox" data-lightbox>
+    <button class="lightbox-close" data-lightbox-close aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <img src="" alt="" />
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
