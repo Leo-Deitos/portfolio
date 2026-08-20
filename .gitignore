@@ -8,3 +8,6 @@ powerbi/Agro1/_brief/
 # OS / editor cruft
 .DS_Store
 Thumbs.db
+
+# Claude Code local settings (machine-specific, not portfolio content)
+.claude/settings.local.json
