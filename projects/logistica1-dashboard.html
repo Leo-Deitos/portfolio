@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Logística1 — Painel Interativo | Leo Deitos</title>
+<meta name="description" content="Painel interativo (HTML/JS, sem Power BI) de logística — dados fictícios, servidos por PostgreSQL, para portfólio." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230a0f1c%22/><path d=%22M15 60 L35 60 L40 45 L60 45 L65 35 L85 35%22 stroke=%22%232dd4c8%22 stroke-width=%228%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/><circle cx=%2285%22 cy=%2235%22 r=%226%22 fill=%22%232dd4c8%22/></svg>" />
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f5f8f8;
+  --surface: #ffffff;
+  --surface-2: #eef3f3;
+  --border: #dbe4e4;
+  --text: #0d1b1b;
+  --text-muted: #4a5c5c;
+  --text-faint: #8a9d9d;
+  --teal: #0d9488;
+  --blue: #2563eb;
+  --orange: #b45309;
+  --red: #dc2626;
+  --green: #0ea45f;
+  --shadow: 0 1px 2px rgba(13,27,27,.06), 0 4px 16px -4px rgba(13,27,27,.10);
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #060d14;
+  --surface: #0e1b26;
+  --surface-2: #122430;
+  --border: #1c3140;
+  --text: #e7f1f1;
+  --text-muted: #8fa7a7;
+  --text-faint: #56706f;
+  --teal: #2dd4c8;
+  --blue: #4d8fef;
+  --orange: #f5a623;
+  --red: #f16565;
+  --green: #16c784;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -8px rgba(0,0,0,.6);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: "Segoe UI", "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.55; transition: background .2s ease, color .2s ease;
+}
+.container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+a { color: inherit; }
+button { font: inherit; cursor: pointer; }
+svg text { font-family: inherit; }
+
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar .container { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.brand-mark { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(135deg, var(--teal), var(--blue)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.brand-mark svg { width: 16px; height: 16px; }
+.brand small { display: block; font-weight: 400; color: var(--text-faint); font-size: .72rem; }
+
+.top-actions { display: flex; align-items: center; gap: 10px; }
+.theme-btn {
+  display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text); font-weight: 600; font-size: .85rem;
+}
+.theme-btn svg { width: 15px; height: 15px; }
+.badge-demo {
+  font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+  padding: 5px 10px; border-radius: 999px; background: rgba(45,212,200,.12); color: var(--teal);
+  border: 1px solid rgba(45,212,200,.3);
+}
+.badge-stack { display: flex; align-items: center; gap: 8px; }
+.badge-pg {
+  font-size: .72rem; font-weight: 700; padding: 5px 10px; border-radius: 999px;
+  background: rgba(77,143,239,.12); color: var(--blue); border: 1px solid rgba(77,143,239,.3);
+}
+
+.view { padding: 32px 0 64px; }
+.page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 22px; }
+.eyebrow { font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--teal); margin: 0 0 8px; }
+.page-head h1 { font-size: clamp(1.3rem, 2.6vw, 1.9rem); margin: 0 0 6px; letter-spacing: -.01em; }
+.page-head p { margin: 0; color: var(--text-muted); font-size: .95rem; max-width: 680px; }
+.page-head .meta { text-align: right; font-size: .78rem; color: var(--text-faint); }
+.page-head .meta b { color: var(--text-muted); }
+
+.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px; }
+.kpi-card {
+  background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--teal);
+  border-radius: 10px; padding: 16px 18px; box-shadow: var(--shadow);
+}
+.kpi-card .label { font-size: .76rem; color: var(--text-faint); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .02em; }
+.kpi-card .value { font-size: 1.4rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.kpi-card .sub { font-size: .78rem; color: var(--text-faint); margin-top: 2px; }
+.kpi-card .delta { font-size: .8rem; margin-top: 6px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.kpi-card .delta.up { color: var(--green); }
+.kpi-card .delta.down { color: var(--red); }
+.kpi-card .delta.flat { color: var(--text-faint); }
+
+.insight-banner {
+  background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--teal);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; box-shadow: var(--shadow);
+}
+.insight-banner .tag { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--teal); margin-bottom: 6px; }
+.insight-banner h2 { margin: 0 0 8px; font-size: 1.05rem; }
+.insight-banner ul { margin: 8px 0 0; padding-left: 18px; color: var(--text-muted); font-size: .88rem; }
+.insight-banner li { margin-bottom: 4px; }
+.insight-banner li b { color: var(--text); }
+
+.grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; margin-bottom: 16px; }
+.grid-1x1 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+@media (max-width: 900px) { .grid-2, .grid-1x1 { grid-template-columns: 1fr; } }
+
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; box-shadow: var(--shadow); }
+.panel h3 { margin: 0 0 4px; font-size: .92rem; font-weight: 700; }
+.panel .sub { color: var(--text-faint); font-size: .78rem; margin: 0 0 14px; }
+
+table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+th, td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; font-variant-numeric: normal; }
+th { color: var(--text-faint); font-weight: 600; font-size: .7rem; text-transform: uppercase; letter-spacing: .03em; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr.risk td:first-child { color: var(--red); font-weight: 600; }
+.table-scroll { overflow-x: auto; max-height: 300px; overflow-y: auto; }
+
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 10px; font-size: .78rem; color: var(--text-muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.legend i.line { width: 14px; height: 2px; border-radius: 0; }
+
+.pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: .74rem; font-weight: 700; }
+.pill.ok { background: rgba(22,199,132,.14); color: var(--green); }
+.pill.warn { background: rgba(241,101,101,.14); color: var(--red); }
+
+footer { border-top: 1px solid var(--border); padding: 24px 0; color: var(--text-faint); font-size: .82rem; }
+footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+footer a { color: var(--text-muted); }
+
+.back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: .85rem; font-weight: 600; margin-bottom: 18px; }
+.back-link:hover { color: var(--text); }
+.back-link svg { width: 13px; height: 13px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container">
+    <div class="brand">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 15 L8 15 L10 11 L14 11 L16 8 L21 8" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="21" cy="8" r="1.6" fill="white"/></svg></span>
+      <span>Logística1 <small>Command Center — Leo Deitos</small></span>
+    </div>
+    <div class="top-actions">
+      <div class="badge-stack">
+        <span class="badge-demo">Dados fictícios</span>
+        <span class="badge-pg">PostgreSQL → Power BI</span>
+      </div>
+      <button class="theme-btn" id="themeBtn">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1M12 20v1M4.2 4.2l.7.7M19.1 19.1l.7.7M3 12h1M20 12h1M4.2 19.8l.7-.7M19.1 4.9l.7-.7"/><circle cx="12" cy="12" r="4"/></svg>
+        <span id="themeLabel">Modo claro</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<a class="container" style="display:block;margin-top:16px;" href="../index.html#projetos">
+  <span class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg> Voltar ao portfólio</span>
+</a>
+
+<section class="view">
+  <div class="container">
+    <div class="page-head">
+      <div>
+        <p class="eyebrow">Operação logística nacional</p>
+        <h1 id="pageTitle">Carregando…</h1>
+        <p>Nível de serviço, custo e risco operacional de 1.000 pedidos simulados — recalculado ao vivo a partir do JSON abaixo, extraído do mesmo PostgreSQL que alimenta o modelo Power BI.</p>
+      </div>
+      <div class="meta" id="pageMeta"></div>
+    </div>
+
+    <div class="kpi-row" id="kpiRow"></div>
+
+    <div class="insight-banner" id="insightBanner"></div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Pulso mensal de volume e serviço</h3>
+        <p class="sub">Barras: pedidos por mês · linha: OTIF % do mês</p>
+        <div class="legend" id="pulseLegend"></div>
+        <div id="pulseChart"></div>
+      </div>
+      <div class="panel">
+        <h3>Transportadoras que requerem atenção</h3>
+        <p class="sub">Ordenado do menor para o maior OTIF</p>
+        <div class="table-scroll"><table id="carrierTable"></table></div>
+      </div>
+    </div>
+
+    <div class="grid-1x1">
+      <div class="panel">
+        <h3>Concentração de custo por região</h3>
+        <p class="sub">Custo logístico total e por pedido</p>
+        <div class="table-scroll"><table id="regionTable"></table></div>
+      </div>
+      <div class="panel">
+        <h3>Modais</h3>
+        <p class="sub">Volume, OTIF, lead time e emissões por modal</p>
+        <div class="table-scroll"><table id="modalTable"></table></div>
+      </div>
+    </div>
+
+    <div class="grid-1x1">
+      <div class="panel">
+        <h3>Principais motivos de atraso</h3>
+        <p class="sub">Ocorrências e dias de atraso acumulados</p>
+        <div class="table-scroll"><table id="reasonTable"></table></div>
+      </div>
+      <div class="panel">
+        <h3>Categorias de produto</h3>
+        <p class="sub">Receita, OTIF e custo logístico por categoria</p>
+        <div class="table-scroll"><table id="categoryTable"></table></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span>© 2026 Leo Deitos. Painel construído em HTML/CSS/JS puro — sem Power BI. Dados servidos por PostgreSQL local, agregados em Python.</span>
+    <a href="../index.html#contato">Contato</a>
+  </div>
+</footer>
+
+<script id="logistica1-data" type="application/json">{"meta":{"periodo":"2025-07-01 a 2026-07-10","dataInicial":"2025-07-01","dataFinal":"2026-07-10","quantidadeMeses":13,"contexto":"Período: completo | Região: Todas | Transportadora: Todas | Modal: Todos | Categoria: Todas","fonteDados":"PostgreSQL (logistica1.logistica.fato_logistica)"},"kpis":{"pedidos":1000,"quantidadeItens":2732.0,"receita":1993279.53,"custoLogistico":82940.8,"custoPorPedido":82.9408,"custoPctReceita":0.04161,"pedidosEntregues":950,"pedidosAtrasados":141,"pctAtrasados":0.141,"pedidosOTIF":827,"otifPct":0.865969,"leadTimeMedio":5.913684,"atrasoMedio":12.191489,"devolucoes":27,"avarias":21,"extravios":5,"emissoesCO2":3339.07,"notaMediaCliente":4.602105,"variacoesMesAnterior":{"pedidosAbs":-69.0,"pedidosPct":-0.734043,"otifPontosPercentuais":0.074359,"otifPct":0.086567,"custoAbs":-5553.61,"custoPct":-0.680929,"leadTimeAbs":-1.423077,"leadTimePct":-0.233684,"emissoesAbs":-342.51,"emissoesPct":-0.757347}},"seriesRankings":{"tendenciaMensal":[{"m":"2025-07","p":87,"q":75,"qe":84,"otifPct":0.892857,"cp":6238.0,"lt":5.714286,"co":193.48},{"m":"2025-08","p":90,"q":75,"qe":89,"otifPct":0.842697,"cp":7780.46,"lt":5.741573,"co":319.77},{"m":"2025-09","p":79,"q":66,"qe":78,"otifPct":0.846154,"cp":6728.67,"lt":6.298701,"co":310.59},{"m":"2025-10","p":72,"q":61,"qe":71,"otifPct":0.859155,"cp":5754.95,"lt":5.901408,"co":186.38},{"m":"2025-11","p":84,"q":68,"qe":83,"otifPct":0.819277,"cp":7374.56,"lt":6.37037,"co":323.65},{"m":"2025-12","p":81,"q":64,"qe":80,"otifPct":0.8,"cp":6598.48,"lt":6.088608,"co":235.0},{"m":"2026-01","p":87,"q":74,"qe":86,"otifPct":0.860465,"cp":7142.68,"lt":6.151163,"co":301.14},{"m":"2026-02","p":76,"q":66,"qe":74,"otifPct":0.891892,"cp":5762.67,"lt":5.864865,"co":190.3},{"m":"2026-03","p":76,"q":67,"qe":71,"otifPct":0.943662,"cp":5882.67,"lt":5.28169,"co":225.21},{"m":"2026-04","p":80,"q":69,"qe":79,"otifPct":0.873418,"cp":6548.92,"lt":5.898734,"co":253.51},{"m":"2026-05","p":69,"q":61,"qe":67,"otifPct":0.910448,"cp":6370.49,"lt":5.712121,"co":238.05},{"m":"2026-06","p":94,"q":67,"qe":78,"otifPct":0.858974,"cp":8155.93,"lt":6.089744,"co":452.25},{"m":"2026-07","p":25,"q":14,"qe":15,"otifPct":0.933333,"cp":2602.32,"lt":4.666667,"co":109.74}],"transportadoras":[{"n":"Rota Certa Logística","p":180,"q":153,"qe":174,"otifPct":0.87931,"cp":14196.58,"custoPorPedido":78.869889,"pctAtrasados":0.138889},{"n":"Expresso Brasil Cargo","p":170,"q":136,"qe":158,"otifPct":0.860759,"cp":12607.46,"custoPorPedido":74.161529,"pctAtrasados":0.158824},{"n":"Veloz Nacional","p":164,"q":134,"qe":159,"otifPct":0.842767,"cp":14738.15,"custoPorPedido":89.866768,"pctAtrasados":0.164634},{"n":"EntregaJá","p":150,"q":133,"qe":138,"otifPct":0.963768,"cp":12821.92,"custoPorPedido":85.479467,"pctAtrasados":0.053333},{"n":"ViaSul Transportes","p":130,"q":113,"qe":126,"otifPct":0.896825,"cp":10141.87,"custoPorPedido":78.014385,"pctAtrasados":0.1},{"n":"CargoMais","p":113,"q":92,"qe":112,"otifPct":0.821429,"cp":8905.79,"custoPorPedido":78.812301,"pctAtrasados":0.168142},{"n":"NorteFlex Log","p":93,"q":66,"qe":88,"otifPct":0.75,"cp":9529.03,"custoPorPedido":102.462688,"pctAtrasados":0.236559}],"regioes":[{"n":"Sudeste","p":491,"q":410,"qe":471,"otifPct":0.870488,"cp":35156.24,"custoPorPedido":71.601303},{"n":"Nordeste","p":193,"q":165,"qe":183,"otifPct":0.901639,"cp":20996.21,"custoPorPedido":108.788653},{"n":"Sul","p":168,"q":143,"qe":159,"otifPct":0.899371,"cp":13090.34,"custoPorPedido":77.91869},{"n":"Centro-Oeste","p":98,"q":72,"qe":92,"otifPct":0.782609,"cp":7406.75,"custoPorPedido":75.579082},{"n":"Norte","p":50,"q":37,"qe":50,"otifPct":0.74,"cp":6291.26,"custoPorPedido":125.8252}],"modais":[{"n":"Rodoviário","p":952,"otifPct":0.871003,"lt":5.763858,"co":3053.64},{"n":"Aéreo","p":34,"otifPct":0.852941,"lt":6.029412,"co":164.09},{"n":"Multimodal","p":14,"otifPct":0.571429,"lt":15.285714,"co":121.34}],"categorias":[{"n":"Eletrônicos","p":176,"qt":467.0,"rc":809001.95,"otifPct":0.850299,"cp":12806.74},{"n":"Móveis","p":106,"qt":301.0,"rc":240127.27,"otifPct":0.9,"cp":13735.18},{"n":"Papelaria e Escritório","p":108,"qt":310.0,"rc":212818.52,"otifPct":0.849057,"cp":10557.64},{"n":"Esportes","p":96,"qt":271.0,"rc":201075.46,"otifPct":0.880435,"cp":10003.77},{"n":"Eletrodomésticos","p":148,"qt":455.0,"rc":176557.74,"otifPct":0.865248,"cp":10629.62},{"n":"Automotivo","p":95,"qt":239.0,"rc":127505.03,"otifPct":0.846154,"cp":8004.4},{"n":"Casa e Decoração","p":84,"qt":235.0,"rc":87774.72,"otifPct":0.873418,"cp":5788.39},{"n":"Moda","p":100,"qt":264.0,"rc":74827.98,"otifPct":0.846939,"cp":6244.35},{"n":"Beleza","p":87,"qt":190.0,"rc":63590.86,"otifPct":0.901235,"cp":5170.71}],"principaisProdutos":[{"n":"Notebook 15 polegadas","p":31,"qt":90.0,"rc":303662.55,"cp":2121.78,"otifPct":0.862069},{"n":"Smartphone 128 GB","p":49,"qt":121.0,"rc":206742.59,"cp":2774.49,"otifPct":0.854167},{"n":"Smart TV 50 polegadas","p":32,"qt":84.0,"rc":197344.94,"cp":3589.31,"otifPct":0.741935},{"n":"Bicicleta Urbana","p":32,"qt":103.0,"rc":151314.5,"cp":4482.71,"otifPct":0.933333},{"n":"Cadeira Gamer","p":41,"qt":104.0,"rc":118338.17,"cp":4970.32,"otifPct":0.9},{"n":"Mesa para Home Office","p":33,"qt":111.0,"rc":106358.75,"cp":5318.38,"otifPct":0.903226},{"n":"Cadeira de Escritório","p":45,"qt":112.0,"rc":85431.03,"cp":4580.04,"otifPct":0.886364},{"n":"Monitor 24 polegadas","p":36,"qt":96.0,"rc":82996.9,"cp":2478.88,"otifPct":0.909091},{"n":"Air Fryer 5 litros","p":42,"qt":151.0,"rc":80419.23,"cp":3434.43,"otifPct":0.769231},{"n":"Impressora Multifuncional","p":30,"qt":99.0,"rc":75365.48,"cp":2346.04,"otifPct":0.758621},{"n":"Pneu Aro 16","p":38,"qt":110.0,"rc":68166.25,"cp":3571.58,"otifPct":0.815789},{"n":"Jogo de Panelas","p":30,"qt":85.0,"rc":57273.09,"cp":2439.26,"otifPct":0.821429},{"n":"Estante Modular","p":28,"qt":78.0,"rc":48337.49,"cp":3836.76,"otifPct":0.92},{"n":"Aspirador Vertical","p":28,"qt":92.0,"rc":42242.27,"cp":2247.22,"otifPct":0.892857},{"n":"Kit de Halteres","p":31,"qt":91.0,"rc":38850.63,"cp":3347.25,"otifPct":0.793103},{"n":"Tênis Esportivo","p":38,"qt":109.0,"rc":34780.19,"cp":2650.44,"otifPct":0.810811},{"n":"Cafeteira Elétrica","p":43,"qt":117.0,"rc":34018.76,"cp":2590.95,"otifPct":0.926829},{"n":"Bateria Automotiva","p":26,"qt":59.0,"rc":33231.96,"cp":2347.08,"otifPct":0.833333},{"n":"Perfume 100 ml","p":37,"qt":78.0,"rc":31797.13,"cp":2117.8,"otifPct":0.911765},{"n":"Kit de Ferramentas","p":31,"qt":70.0,"rc":26106.82,"cp":2085.74,"otifPct":0.896552},{"n":"Jaqueta Corta-Vento","p":37,"qt":100.0,"rc":24827.06,"cp":2185.01,"otifPct":0.864865},{"n":"Secador de Cabelo","p":32,"qt":79.0,"rc":20613.1,"cp":1791.98,"otifPct":0.9},{"n":"Liquidificador","p":35,"qt":95.0,"rc":19877.48,"cp":2357.02,"otifPct":0.878788},{"n":"Caixa de Papel A4","p":37,"qt":107.0,"rc":19114.87,"cp":3241.28,"otifPct":0.864865},{"n":"Fone Bluetooth","p":28,"qt":76.0,"rc":18254.97,"cp":1842.28,"otifPct":0.884615},{"n":"Jogo de Cama Queen","p":28,"qt":72.0,"rc":16185.76,"cp":1709.59,"otifPct":0.92},{"n":"Mochila Executiva","p":25,"qt":55.0,"rc":15220.73,"cp":1408.9,"otifPct":0.875},{"n":"Luminária de Mesa","p":26,"qt":78.0,"rc":14315.87,"cp":1639.54,"otifPct":0.884615},{"n":"Kit de Skincare","p":18,"qt":33.0,"rc":11180.63,"cp":1260.93,"otifPct":0.882353},{"n":"Tapete de Yoga","p":33,"qt":77.0,"rc":10910.33,"cp":2173.81,"otifPct":0.909091}],"motivosAtraso":[{"n":"Atraso em transferência","p":45,"atrasados":45,"diasAtraso":312.0},{"n":"Cliente ausente","p":20,"atrasados":20,"diasAtraso":73.0},{"n":"Restrição operacional","p":20,"atrasados":20,"diasAtraso":73.0},{"n":"Condição climática","p":17,"atrasados":17,"diasAtraso":73.0},{"n":"Endereço não localizado","p":17,"atrasados":17,"diasAtraso":124.0},{"n":"Volume acima da capacidade","p":9,"atrasados":9,"diasAtraso":32.0},{"n":"Avaria na carga","p":8,"atrasados":8,"diasAtraso":33.0},{"n":"Extravio durante o transporte","p":5,"atrasados":5,"diasAtraso":999.0}],"statusEntrega":[{"n":"Entregue","p":923,"e":923,"q":807,"atrasados":108},{"n":"Devolvido","p":27,"e":27,"q":20,"atrasados":7},{"n":"Atrasado","p":21,"e":0,"q":0,"atrasados":21},{"n":"Cancelado","p":21,"e":0,"q":0,"atrasados":0},{"n":"Extraviado","p":5,"e":0,"q":0,"atrasados":5},{"n":"Em trânsito","p":3,"e":0,"q":0,"atrasados":0}]}}</script>
+<script>
+(function () {
+  'use strict';
+  const DATA = JSON.parse(document.getElementById('logistica1-data').textContent);
+
+  function getCss(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  const HEX = () => ({
+    teal: getCss('--teal'), blue: getCss('--blue'), orange: getCss('--orange'), red: getCss('--red'),
+    green: getCss('--green'), text: getCss('--text'), muted: getCss('--text-muted'),
+    faint: getCss('--text-faint'), border: getCss('--border')
+  });
+
+  const fmtInt = (n) => n == null ? '—' : Math.round(n).toLocaleString('pt-BR');
+  const fmtBRL = (n) => n == null ? '—' : 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtBRLInt = (n) => n == null ? '—' : 'R$ ' + Math.round(n).toLocaleString('pt-BR');
+  const fmtPct1 = (n) => n == null ? '—' : (n * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%';
+  const fmtDias = (n) => n == null ? '—' : n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' dias';
+  const fmtKg = (n) => n == null ? '—' : n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' kg';
+  const fmtDelta = (n, unit) => {
+    if (n == null) return '—';
+    const arrow = n >= 0 ? '▲ +' : '▼ ';
+    return arrow + Math.abs(n).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + unit;
+  };
+  const deltaCls = (n) => n == null ? 'flat' : n > 0.0001 ? 'up' : n < -0.0001 ? 'down' : 'flat';
+
+  function kpiCard(label, value, sub, delta, deltaUnit) {
+    return `<div class="kpi-card">
+      <div class="label">${label}</div>
+      <div class="value">${value}</div>
+      ${sub ? `<div class="sub">${sub}</div>` : ''}
+      ${delta !== undefined ? `<div class="delta ${deltaCls(delta)}">${fmtDelta(delta, deltaUnit)} vs. mês anterior</div>` : ''}
+    </div>`;
+  }
+
+  // ---------- combo chart: bars (pedidos) + line (OTIF %) ----------
+  function pulseChart(el) {
+    const rows = DATA.seriesRankings.tendenciaMensal;
+    const W = Math.max(el.clientWidth || 0, 320);
+    const H = 280;
+    const padL = 34, padR = 34, padT = 20, padB = 30;
+    const plotW = W - padL - padR, plotH = H - padT - padB;
+    const c = HEX();
+    const n = rows.length;
+    const barGap = 6;
+    const barW = Math.max((plotW / n) - barGap, 4);
+    const maxP = Math.max(1, ...rows.map((r) => r.p || 0));
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" role="img" aria-label="Pedidos e OTIF por mês">`;
+    svg += `<line x1="${padL}" y1="${H - padB}" x2="${W - padR}" y2="${H - padB}" stroke="${c.border}" stroke-width="1"/>`;
+    [0, 50, 100].forEach((p) => {
+      const y = padT + plotH - (p / 100) * plotH;
+      svg += `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W - padR}" y2="${y.toFixed(1)}" stroke="${c.border}" stroke-width="1" stroke-dasharray="2,4"/>`;
+      svg += `<text x="${padL - 6}" y="${(y + 3).toFixed(1)}" font-size="9" fill="${c.faint}" text-anchor="end">${p}%</text>`;
+    });
+
+    const xCenters = [];
+    rows.forEach((r, i) => {
+      const gx = padL + i * (plotW / n) + (plotW / n - barW) / 2;
+      const bh = ((r.p || 0) / maxP) * plotH;
+      const by = H - padB - bh;
+      xCenters.push(padL + i * (plotW / n) + (plotW / n) / 2);
+      svg += `<rect x="${gx.toFixed(1)}" y="${by.toFixed(1)}" width="${barW.toFixed(1)}" height="${bh.toFixed(1)}" rx="2" fill="${c.teal}" opacity="0.85"/>`;
+      svg += `<text x="${(gx + barW / 2).toFixed(1)}" y="${H - padB + 14}" font-size="9" fill="${c.muted}" text-anchor="middle">${r.m.slice(5)}</text>`;
+    });
+
+    const linePts = rows.map((r, i) => {
+      const y = padT + plotH - ((r.otifPct || 0)) * plotH;
+      return `${xCenters[i].toFixed(1)},${y.toFixed(1)}`;
+    });
+    svg += `<polyline points="${linePts.join(' ')}" fill="none" stroke="${c.blue}" stroke-width="2.2"/>`;
+    rows.forEach((r, i) => {
+      const y = padT + plotH - ((r.otifPct || 0)) * plotH;
+      svg += `<circle cx="${xCenters[i].toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${c.blue}"/>`;
+    });
+
+    svg += `</svg>`;
+    el.innerHTML = svg;
+    document.getElementById('pulseLegend').innerHTML =
+      `<span><i style="background:${c.teal}"></i>Pedidos (barras, eixo à esquerda)</span>
+       <span><i class="line" style="background:${c.blue}"></i>OTIF % (linha, 0–100%)</span>`;
+  }
+
+  function rows(sel, cols) {
+    return `<thead><tr>${cols.map((c) => `<th>${c}</th>`).join('')}</tr></thead><tbody>${sel}</tbody>`;
+  }
+
+  function pillOtif(p) {
+    if (p == null) return '—';
+    const cls = p >= 0.85 ? 'ok' : 'warn';
+    return `<span class="pill ${cls}">${fmtPct1(p)}</span>`;
+  }
+
+  function render() {
+    const k = DATA.kpis;
+    const v = k.variacoesMesAnterior;
+
+    document.getElementById('pageTitle').textContent =
+      `OTIF em ${fmtPct1(k.otifPct)} sobre ${fmtInt(k.pedidos)} pedidos, com ${fmtInt(k.pedidosAtrasados)} atrasos rastreados`;
+    document.getElementById('pageMeta').innerHTML =
+      `<b>Período:</b> ${DATA.meta.dataInicial} a ${DATA.meta.dataFinal}<br/><b>Fonte:</b> ${DATA.meta.fonteDados}`;
+
+    document.getElementById('kpiRow').innerHTML = [
+      kpiCard('Pedidos', fmtInt(k.pedidos), `${fmtInt(k.pedidosEntregues)} entregues`, v.pedidosPct, '%'),
+      kpiCard('OTIF', fmtPct1(k.otifPct), `${fmtInt(k.pedidosOTIF)} de ${fmtInt(k.pedidosOTIF / k.otifPct)} elegíveis`, v.otifPontosPercentuais, ' p.p.'),
+      kpiCard('Custo Logístico', fmtBRLInt(k.custoLogistico), `${fmtBRL(k.custoPorPedido)} por pedido`, v.custoPct, '%'),
+      kpiCard('Lead Time Médio', fmtDias(k.leadTimeMedio), `${fmtInt(k.pedidosEntregues)} observações válidas`, v.leadTimePct, '%'),
+      kpiCard('Emissões CO₂', fmtKg(k.emissoesCO2), `${fmtKg(k.emissoesCO2 / k.pedidos)} por pedido`, v.emissoesPct, '%'),
+    ].join('');
+
+    const piorTransp = [...DATA.seriesRankings.transportadoras].sort((a, b) => a.otifPct - b.otifPct)[0];
+    const piorRegiao = [...DATA.seriesRankings.regioes].sort((a, b) => a.otifPct - b.otifPct)[0];
+    const piorMotivo = [...DATA.seriesRankings.motivosAtraso].sort((a, b) => b.atrasados - a.atrasados)[0];
+
+    document.getElementById('insightBanner').innerHTML = `
+      <div class="tag">Leitura executiva</div>
+      <h2>${piorTransp.n} requer atenção no nível de serviço</h2>
+      <ul>
+        <li><b>${piorTransp.n}</b> tem o menor OTIF entre as transportadoras (${fmtPct1(piorTransp.otifPct)}, ${fmtInt(piorTransp.qe)} pedidos elegíveis).</li>
+        <li><b>${piorRegiao.n}</b> concentra o pior serviço regional, com OTIF de ${fmtPct1(piorRegiao.otifPct)}.</li>
+        <li>Principal motivo de atraso: <b>${piorMotivo.n}</b>, com ${fmtInt(piorMotivo.atrasados)} ocorrências.</li>
+        <li>Qualidade: <b>${fmtInt(k.devolucoes)}</b> devoluções, <b>${fmtInt(k.avarias)}</b> avarias e <b>${fmtInt(k.extravios)}</b> extravios. Nota média ${k.notaMediaCliente.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}.</li>
+      </ul>`;
+
+    pulseChart(document.getElementById('pulseChart'));
+
+    const carriers = [...DATA.seriesRankings.transportadoras].sort((a, b) => a.otifPct - b.otifPct);
+    document.getElementById('carrierTable').innerHTML = rows(
+      carriers.map((r) => `<tr class="${r.otifPct < 0.85 ? 'risk' : ''}"><td>${r.n}</td><td>${fmtInt(r.p)}</td><td>${pillOtif(r.otifPct)}</td><td>${fmtBRL(r.custoPorPedido)}</td><td>${fmtPct1(r.pctAtrasados)}</td></tr>`).join(''),
+      ['Transportadora', 'Pedidos', 'OTIF', 'Custo/Pedido', '% Atrasados']
+    );
+
+    const regioes = [...DATA.seriesRankings.regioes].sort((a, b) => b.cp - a.cp);
+    document.getElementById('regionTable').innerHTML = rows(
+      regioes.map((r) => `<tr><td>${r.n}</td><td>${fmtInt(r.p)}</td><td>${pillOtif(r.otifPct)}</td><td>${fmtBRLInt(r.cp)}</td><td>${fmtBRL(r.custoPorPedido)}</td></tr>`).join(''),
+      ['Região', 'Pedidos', 'OTIF', 'Custo Total', 'Custo/Pedido']
+    );
+
+    const modais = [...DATA.seriesRankings.modais].sort((a, b) => b.p - a.p);
+    document.getElementById('modalTable').innerHTML = rows(
+      modais.map((r) => `<tr><td>${r.n}</td><td>${fmtInt(r.p)}</td><td>${pillOtif(r.otifPct)}</td><td>${fmtDias(r.lt)}</td><td>${fmtKg(r.co)}</td></tr>`).join(''),
+      ['Modal', 'Pedidos', 'OTIF', 'Lead Time', 'Emissões']
+    );
+
+    const motivos = [...DATA.seriesRankings.motivosAtraso].sort((a, b) => b.atrasados - a.atrasados);
+    document.getElementById('reasonTable').innerHTML = rows(
+      motivos.map((r) => `<tr><td>${r.n}</td><td>${fmtInt(r.atrasados)}</td><td>${fmtInt(r.diasAtraso)} dias</td></tr>`).join(''),
+      ['Motivo', 'Ocorrências', 'Dias de Atraso']
+    );
+
+    const categorias = [...DATA.seriesRankings.categorias].sort((a, b) => b.rc - a.rc);
+    document.getElementById('categoryTable').innerHTML = rows(
+      categorias.map((r) => `<tr><td>${r.n}</td><td>${fmtBRLInt(r.rc)}</td><td>${pillOtif(r.otifPct)}</td><td>${fmtBRLInt(r.cp)}</td></tr>`).join(''),
+      ['Categoria', 'Receita', 'OTIF', 'Custo Logístico']
+    );
+  }
+
+  function applyThemeLabel() {
+    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+    document.getElementById('themeLabel').textContent = isDark ? 'Modo claro' : 'Modo escuro';
+  }
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('logistica1-theme', next); } catch (e) {}
+    applyThemeLabel();
+    render();
+  });
+  (function initTheme() {
+    let saved = null;
+    try { saved = localStorage.getItem('logistica1-theme'); } catch (e) {}
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+    applyThemeLabel();
+  })();
+
+  render();
+  window.addEventListener('resize', () => {
+    clearTimeout(window.__logistica1ResizeT);
+    window.__logistica1ResizeT = setTimeout(render, 150);
+  });
+})();
+</script>
+</body>
+</html>

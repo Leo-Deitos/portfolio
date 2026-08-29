@@ -1,0 +1,728 @@
+{
+  "meta": {
+    "periodo": "2025-07-01 a 2026-07-10",
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2026-07-10",
+    "quantidadeMeses": 13,
+    "contexto": "Período: completo | Região: Todas | Transportadora: Todas | Modal: Todos | Categoria: Todas",
+    "fonteDados": "PostgreSQL (logistica1.logistica.fato_logistica)"
+  },
+  "kpis": {
+    "pedidos": 1000,
+    "quantidadeItens": 2732.0,
+    "receita": 1993279.53,
+    "custoLogistico": 82940.8,
+    "custoPorPedido": 82.9408,
+    "custoPctReceita": 0.04161,
+    "pedidosEntregues": 950,
+    "pedidosAtrasados": 141,
+    "pctAtrasados": 0.141,
+    "pedidosOTIF": 827,
+    "otifPct": 0.865969,
+    "leadTimeMedio": 5.913684,
+    "atrasoMedio": 12.191489,
+    "devolucoes": 27,
+    "avarias": 21,
+    "extravios": 5,
+    "emissoesCO2": 3339.07,
+    "notaMediaCliente": 4.602105,
+    "variacoesMesAnterior": {
+      "pedidosAbs": -69.0,
+      "pedidosPct": -0.734043,
+      "otifPontosPercentuais": 0.074359,
+      "otifPct": 0.086567,
+      "custoAbs": -5553.61,
+      "custoPct": -0.680929,
+      "leadTimeAbs": -1.423077,
+      "leadTimePct": -0.233684,
+      "emissoesAbs": -342.51,
+      "emissoesPct": -0.757347
+    }
+  },
+  "seriesRankings": {
+    "tendenciaMensal": [
+      {
+        "m": "2025-07",
+        "p": 87,
+        "q": 75,
+        "qe": 84,
+        "otifPct": 0.892857,
+        "cp": 6238.0,
+        "lt": 5.714286,
+        "co": 193.48
+      },
+      {
+        "m": "2025-08",
+        "p": 90,
+        "q": 75,
+        "qe": 89,
+        "otifPct": 0.842697,
+        "cp": 7780.46,
+        "lt": 5.741573,
+        "co": 319.77
+      },
+      {
+        "m": "2025-09",
+        "p": 79,
+        "q": 66,
+        "qe": 78,
+        "otifPct": 0.846154,
+        "cp": 6728.67,
+        "lt": 6.298701,
+        "co": 310.59
+      },
+      {
+        "m": "2025-10",
+        "p": 72,
+        "q": 61,
+        "qe": 71,
+        "otifPct": 0.859155,
+        "cp": 5754.95,
+        "lt": 5.901408,
+        "co": 186.38
+      },
+      {
+        "m": "2025-11",
+        "p": 84,
+        "q": 68,
+        "qe": 83,
+        "otifPct": 0.819277,
+        "cp": 7374.56,
+        "lt": 6.37037,
+        "co": 323.65
+      },
+      {
+        "m": "2025-12",
+        "p": 81,
+        "q": 64,
+        "qe": 80,
+        "otifPct": 0.8,
+        "cp": 6598.48,
+        "lt": 6.088608,
+        "co": 235.0
+      },
+      {
+        "m": "2026-01",
+        "p": 87,
+        "q": 74,
+        "qe": 86,
+        "otifPct": 0.860465,
+        "cp": 7142.68,
+        "lt": 6.151163,
+        "co": 301.14
+      },
+      {
+        "m": "2026-02",
+        "p": 76,
+        "q": 66,
+        "qe": 74,
+        "otifPct": 0.891892,
+        "cp": 5762.67,
+        "lt": 5.864865,
+        "co": 190.3
+      },
+      {
+        "m": "2026-03",
+        "p": 76,
+        "q": 67,
+        "qe": 71,
+        "otifPct": 0.943662,
+        "cp": 5882.67,
+        "lt": 5.28169,
+        "co": 225.21
+      },
+      {
+        "m": "2026-04",
+        "p": 80,
+        "q": 69,
+        "qe": 79,
+        "otifPct": 0.873418,
+        "cp": 6548.92,
+        "lt": 5.898734,
+        "co": 253.51
+      },
+      {
+        "m": "2026-05",
+        "p": 69,
+        "q": 61,
+        "qe": 67,
+        "otifPct": 0.910448,
+        "cp": 6370.49,
+        "lt": 5.712121,
+        "co": 238.05
+      },
+      {
+        "m": "2026-06",
+        "p": 94,
+        "q": 67,
+        "qe": 78,
+        "otifPct": 0.858974,
+        "cp": 8155.93,
+        "lt": 6.089744,
+        "co": 452.25
+      },
+      {
+        "m": "2026-07",
+        "p": 25,
+        "q": 14,
+        "qe": 15,
+        "otifPct": 0.933333,
+        "cp": 2602.32,
+        "lt": 4.666667,
+        "co": 109.74
+      }
+    ],
+    "transportadoras": [
+      {
+        "n": "Rota Certa Logística",
+        "p": 180,
+        "q": 153,
+        "qe": 174,
+        "otifPct": 0.87931,
+        "cp": 14196.58,
+        "custoPorPedido": 78.869889,
+        "pctAtrasados": 0.138889
+      },
+      {
+        "n": "Expresso Brasil Cargo",
+        "p": 170,
+        "q": 136,
+        "qe": 158,
+        "otifPct": 0.860759,
+        "cp": 12607.46,
+        "custoPorPedido": 74.161529,
+        "pctAtrasados": 0.158824
+      },
+      {
+        "n": "Veloz Nacional",
+        "p": 164,
+        "q": 134,
+        "qe": 159,
+        "otifPct": 0.842767,
+        "cp": 14738.15,
+        "custoPorPedido": 89.866768,
+        "pctAtrasados": 0.164634
+      },
+      {
+        "n": "EntregaJá",
+        "p": 150,
+        "q": 133,
+        "qe": 138,
+        "otifPct": 0.963768,
+        "cp": 12821.92,
+        "custoPorPedido": 85.479467,
+        "pctAtrasados": 0.053333
+      },
+      {
+        "n": "ViaSul Transportes",
+        "p": 130,
+        "q": 113,
+        "qe": 126,
+        "otifPct": 0.896825,
+        "cp": 10141.87,
+        "custoPorPedido": 78.014385,
+        "pctAtrasados": 0.1
+      },
+      {
+        "n": "CargoMais",
+        "p": 113,
+        "q": 92,
+        "qe": 112,
+        "otifPct": 0.821429,
+        "cp": 8905.79,
+        "custoPorPedido": 78.812301,
+        "pctAtrasados": 0.168142
+      },
+      {
+        "n": "NorteFlex Log",
+        "p": 93,
+        "q": 66,
+        "qe": 88,
+        "otifPct": 0.75,
+        "cp": 9529.03,
+        "custoPorPedido": 102.462688,
+        "pctAtrasados": 0.236559
+      }
+    ],
+    "regioes": [
+      {
+        "n": "Sudeste",
+        "p": 491,
+        "q": 410,
+        "qe": 471,
+        "otifPct": 0.870488,
+        "cp": 35156.24,
+        "custoPorPedido": 71.601303
+      },
+      {
+        "n": "Nordeste",
+        "p": 193,
+        "q": 165,
+        "qe": 183,
+        "otifPct": 0.901639,
+        "cp": 20996.21,
+        "custoPorPedido": 108.788653
+      },
+      {
+        "n": "Sul",
+        "p": 168,
+        "q": 143,
+        "qe": 159,
+        "otifPct": 0.899371,
+        "cp": 13090.34,
+        "custoPorPedido": 77.91869
+      },
+      {
+        "n": "Centro-Oeste",
+        "p": 98,
+        "q": 72,
+        "qe": 92,
+        "otifPct": 0.782609,
+        "cp": 7406.75,
+        "custoPorPedido": 75.579082
+      },
+      {
+        "n": "Norte",
+        "p": 50,
+        "q": 37,
+        "qe": 50,
+        "otifPct": 0.74,
+        "cp": 6291.26,
+        "custoPorPedido": 125.8252
+      }
+    ],
+    "modais": [
+      {
+        "n": "Rodoviário",
+        "p": 952,
+        "otifPct": 0.871003,
+        "lt": 5.763858,
+        "co": 3053.64
+      },
+      {
+        "n": "Aéreo",
+        "p": 34,
+        "otifPct": 0.852941,
+        "lt": 6.029412,
+        "co": 164.09
+      },
+      {
+        "n": "Multimodal",
+        "p": 14,
+        "otifPct": 0.571429,
+        "lt": 15.285714,
+        "co": 121.34
+      }
+    ],
+    "categorias": [
+      {
+        "n": "Eletrônicos",
+        "p": 176,
+        "qt": 467.0,
+        "rc": 809001.95,
+        "otifPct": 0.850299,
+        "cp": 12806.74
+      },
+      {
+        "n": "Móveis",
+        "p": 106,
+        "qt": 301.0,
+        "rc": 240127.27,
+        "otifPct": 0.9,
+        "cp": 13735.18
+      },
+      {
+        "n": "Papelaria e Escritório",
+        "p": 108,
+        "qt": 310.0,
+        "rc": 212818.52,
+        "otifPct": 0.849057,
+        "cp": 10557.64
+      },
+      {
+        "n": "Esportes",
+        "p": 96,
+        "qt": 271.0,
+        "rc": 201075.46,
+        "otifPct": 0.880435,
+        "cp": 10003.77
+      },
+      {
+        "n": "Eletrodomésticos",
+        "p": 148,
+        "qt": 455.0,
+        "rc": 176557.74,
+        "otifPct": 0.865248,
+        "cp": 10629.62
+      },
+      {
+        "n": "Automotivo",
+        "p": 95,
+        "qt": 239.0,
+        "rc": 127505.03,
+        "otifPct": 0.846154,
+        "cp": 8004.4
+      },
+      {
+        "n": "Casa e Decoração",
+        "p": 84,
+        "qt": 235.0,
+        "rc": 87774.72,
+        "otifPct": 0.873418,
+        "cp": 5788.39
+      },
+      {
+        "n": "Moda",
+        "p": 100,
+        "qt": 264.0,
+        "rc": 74827.98,
+        "otifPct": 0.846939,
+        "cp": 6244.35
+      },
+      {
+        "n": "Beleza",
+        "p": 87,
+        "qt": 190.0,
+        "rc": 63590.86,
+        "otifPct": 0.901235,
+        "cp": 5170.71
+      }
+    ],
+    "principaisProdutos": [
+      {
+        "n": "Notebook 15 polegadas",
+        "p": 31,
+        "qt": 90.0,
+        "rc": 303662.55,
+        "cp": 2121.78,
+        "otifPct": 0.862069
+      },
+      {
+        "n": "Smartphone 128 GB",
+        "p": 49,
+        "qt": 121.0,
+        "rc": 206742.59,
+        "cp": 2774.49,
+        "otifPct": 0.854167
+      },
+      {
+        "n": "Smart TV 50 polegadas",
+        "p": 32,
+        "qt": 84.0,
+        "rc": 197344.94,
+        "cp": 3589.31,
+        "otifPct": 0.741935
+      },
+      {
+        "n": "Bicicleta Urbana",
+        "p": 32,
+        "qt": 103.0,
+        "rc": 151314.5,
+        "cp": 4482.71,
+        "otifPct": 0.933333
+      },
+      {
+        "n": "Cadeira Gamer",
+        "p": 41,
+        "qt": 104.0,
+        "rc": 118338.17,
+        "cp": 4970.32,
+        "otifPct": 0.9
+      },
+      {
+        "n": "Mesa para Home Office",
+        "p": 33,
+        "qt": 111.0,
+        "rc": 106358.75,
+        "cp": 5318.38,
+        "otifPct": 0.903226
+      },
+      {
+        "n": "Cadeira de Escritório",
+        "p": 45,
+        "qt": 112.0,
+        "rc": 85431.03,
+        "cp": 4580.04,
+        "otifPct": 0.886364
+      },
+      {
+        "n": "Monitor 24 polegadas",
+        "p": 36,
+        "qt": 96.0,
+        "rc": 82996.9,
+        "cp": 2478.88,
+        "otifPct": 0.909091
+      },
+      {
+        "n": "Air Fryer 5 litros",
+        "p": 42,
+        "qt": 151.0,
+        "rc": 80419.23,
+        "cp": 3434.43,
+        "otifPct": 0.769231
+      },
+      {
+        "n": "Impressora Multifuncional",
+        "p": 30,
+        "qt": 99.0,
+        "rc": 75365.48,
+        "cp": 2346.04,
+        "otifPct": 0.758621
+      },
+      {
+        "n": "Pneu Aro 16",
+        "p": 38,
+        "qt": 110.0,
+        "rc": 68166.25,
+        "cp": 3571.58,
+        "otifPct": 0.815789
+      },
+      {
+        "n": "Jogo de Panelas",
+        "p": 30,
+        "qt": 85.0,
+        "rc": 57273.09,
+        "cp": 2439.26,
+        "otifPct": 0.821429
+      },
+      {
+        "n": "Estante Modular",
+        "p": 28,
+        "qt": 78.0,
+        "rc": 48337.49,
+        "cp": 3836.76,
+        "otifPct": 0.92
+      },
+      {
+        "n": "Aspirador Vertical",
+        "p": 28,
+        "qt": 92.0,
+        "rc": 42242.27,
+        "cp": 2247.22,
+        "otifPct": 0.892857
+      },
+      {
+        "n": "Kit de Halteres",
+        "p": 31,
+        "qt": 91.0,
+        "rc": 38850.63,
+        "cp": 3347.25,
+        "otifPct": 0.793103
+      },
+      {
+        "n": "Tênis Esportivo",
+        "p": 38,
+        "qt": 109.0,
+        "rc": 34780.19,
+        "cp": 2650.44,
+        "otifPct": 0.810811
+      },
+      {
+        "n": "Cafeteira Elétrica",
+        "p": 43,
+        "qt": 117.0,
+        "rc": 34018.76,
+        "cp": 2590.95,
+        "otifPct": 0.926829
+      },
+      {
+        "n": "Bateria Automotiva",
+        "p": 26,
+        "qt": 59.0,
+        "rc": 33231.96,
+        "cp": 2347.08,
+        "otifPct": 0.833333
+      },
+      {
+        "n": "Perfume 100 ml",
+        "p": 37,
+        "qt": 78.0,
+        "rc": 31797.13,
+        "cp": 2117.8,
+        "otifPct": 0.911765
+      },
+      {
+        "n": "Kit de Ferramentas",
+        "p": 31,
+        "qt": 70.0,
+        "rc": 26106.82,
+        "cp": 2085.74,
+        "otifPct": 0.896552
+      },
+      {
+        "n": "Jaqueta Corta-Vento",
+        "p": 37,
+        "qt": 100.0,
+        "rc": 24827.06,
+        "cp": 2185.01,
+        "otifPct": 0.864865
+      },
+      {
+        "n": "Secador de Cabelo",
+        "p": 32,
+        "qt": 79.0,
+        "rc": 20613.1,
+        "cp": 1791.98,
+        "otifPct": 0.9
+      },
+      {
+        "n": "Liquidificador",
+        "p": 35,
+        "qt": 95.0,
+        "rc": 19877.48,
+        "cp": 2357.02,
+        "otifPct": 0.878788
+      },
+      {
+        "n": "Caixa de Papel A4",
+        "p": 37,
+        "qt": 107.0,
+        "rc": 19114.87,
+        "cp": 3241.28,
+        "otifPct": 0.864865
+      },
+      {
+        "n": "Fone Bluetooth",
+        "p": 28,
+        "qt": 76.0,
+        "rc": 18254.97,
+        "cp": 1842.28,
+        "otifPct": 0.884615
+      },
+      {
+        "n": "Jogo de Cama Queen",
+        "p": 28,
+        "qt": 72.0,
+        "rc": 16185.76,
+        "cp": 1709.59,
+        "otifPct": 0.92
+      },
+      {
+        "n": "Mochila Executiva",
+        "p": 25,
+        "qt": 55.0,
+        "rc": 15220.73,
+        "cp": 1408.9,
+        "otifPct": 0.875
+      },
+      {
+        "n": "Luminária de Mesa",
+        "p": 26,
+        "qt": 78.0,
+        "rc": 14315.87,
+        "cp": 1639.54,
+        "otifPct": 0.884615
+      },
+      {
+        "n": "Kit de Skincare",
+        "p": 18,
+        "qt": 33.0,
+        "rc": 11180.63,
+        "cp": 1260.93,
+        "otifPct": 0.882353
+      },
+      {
+        "n": "Tapete de Yoga",
+        "p": 33,
+        "qt": 77.0,
+        "rc": 10910.33,
+        "cp": 2173.81,
+        "otifPct": 0.909091
+      }
+    ],
+    "motivosAtraso": [
+      {
+        "n": "Atraso em transferência",
+        "p": 45,
+        "atrasados": 45,
+        "diasAtraso": 312.0
+      },
+      {
+        "n": "Cliente ausente",
+        "p": 20,
+        "atrasados": 20,
+        "diasAtraso": 73.0
+      },
+      {
+        "n": "Restrição operacional",
+        "p": 20,
+        "atrasados": 20,
+        "diasAtraso": 73.0
+      },
+      {
+        "n": "Condição climática",
+        "p": 17,
+        "atrasados": 17,
+        "diasAtraso": 73.0
+      },
+      {
+        "n": "Endereço não localizado",
+        "p": 17,
+        "atrasados": 17,
+        "diasAtraso": 124.0
+      },
+      {
+        "n": "Volume acima da capacidade",
+        "p": 9,
+        "atrasados": 9,
+        "diasAtraso": 32.0
+      },
+      {
+        "n": "Avaria na carga",
+        "p": 8,
+        "atrasados": 8,
+        "diasAtraso": 33.0
+      },
+      {
+        "n": "Extravio durante o transporte",
+        "p": 5,
+        "atrasados": 5,
+        "diasAtraso": 999.0
+      }
+    ],
+    "statusEntrega": [
+      {
+        "n": "Entregue",
+        "p": 923,
+        "e": 923,
+        "q": 807,
+        "atrasados": 108
+      },
+      {
+        "n": "Devolvido",
+        "p": 27,
+        "e": 27,
+        "q": 20,
+        "atrasados": 7
+      },
+      {
+        "n": "Atrasado",
+        "p": 21,
+        "e": 0,
+        "q": 0,
+        "atrasados": 21
+      },
+      {
+        "n": "Cancelado",
+        "p": 21,
+        "e": 0,
+        "q": 0,
+        "atrasados": 0
+      },
+      {
+        "n": "Extraviado",
+        "p": 5,
+        "e": 0,
+        "q": 0,
+        "atrasados": 5
+      },
+      {
+        "n": "Em trânsito",
+        "p": 3,
+        "e": 0,
+        "q": 0,
+        "atrasados": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logística1 — Command Center Logístico | Leo Deitos</title>
+  <meta name="description" content="Estudo de caso do dashboard Logística1: nível de serviço (OTIF), custo logístico e risco operacional, modelado em PostgreSQL e servido no Power BI." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23060d14%22/><path d=%22M15 60 L35 60 L40 45 L60 45 L65 35 L85 35%22 stroke=%22%232dd4c8%22 stroke-width=%228%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/><circle cx=%2285%22 cy=%2235%22 r=%226%22 fill=%22%232dd4c8%22/></svg>" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 16 L10 8 L14 13 L20 5" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-name">Leo Deitos</span>
+        <span class="brand-tagline">Dashboards &amp; Business Intelligence</span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html#projetos">Projetos</a>
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="detail-hero">
+    <div class="container">
+      <a class="back-link" href="../index.html#projetos">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar aos projetos
+      </a>
+      <h1>Logística1 — Command Center Logístico</h1>
+      <p class="subtitle">
+        Painel executivo de nível de serviço (OTIF), custo logístico e risco operacional para
+        1.000 pedidos simulados — da planilha de origem a um banco PostgreSQL modelado em estrela,
+        consumido pelo Power BI.
+      </p>
+      <div class="meta-row">
+        <span class="tag">Power BI</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag tag-green">Logística</span>
+        <span class="tag tag-purple">Dados fictícios</span>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="label">OTIF global</div>
+          <div class="value">86,6%</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Pedidos analisados</div>
+          <div class="value">1.000</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Lead time médio</div>
+          <div class="value">5,91 dias</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Custo logístico total</div>
+          <div class="value">R$ 82.941</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-body-section">
+    <div class="container">
+      <div class="detail-body">
+        <div>
+          <h2>Sobre o painel</h2>
+          <p>
+            O Logística1 acompanha a operação de ponta a ponta de uma transportadora fictícia:
+            quanto do que foi prometido chegou no prazo e completo (OTIF), quanto isso custa por
+            pedido e por região, e onde está o maior risco — transportadora, modal, região ou motivo
+            de atraso. A página de capa dá a leitura executiva em 10 segundos; a página de análise
+            abre filtros por mês, região, categoria, transportadora e modal, com leitura executiva
+            dinâmica que aponta automaticamente o ponto de atenção do recorte selecionado.
+          </p>
+          <p>
+            A base original veio de uma planilha simulada. Para este projeto, o pipeline de dados foi
+            migrado para um banco <strong>PostgreSQL</strong> modelado em esquema estrela (1 fato +
+            8 dimensões) — a mesma estrutura do modelo semântico do Power BI — com o ETL de
+            padronização (tipos, nomes, flags de qualidade) reescrito em Python/pandas e o Power BI
+            consultando o Postgres diretamente via conector nativo, no lugar da planilha.
+          </p>
+
+          <h2 style="margin-top: 36px;">Principais funcionalidades</h2>
+          <ul class="feature-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              KPIs de nível de serviço (OTIF, lead time, atraso médio) e de custo (total, por pedido, % da receita), com variação vs. mês anterior.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Leitura executiva dinâmica: identifica automaticamente a transportadora e a região com pior OTIF, e o principal motivo de atraso do recorte filtrado.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Filtros por mês, região, categoria de produto, transportadora e modal, todos combináveis.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Pulso mensal de volume x OTIF, ranking de transportadoras e concentração de custo por região.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tema claro/escuro alternável, com paleta consistente em todos os visuais.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Dados servidos por PostgreSQL — modelo estrela versionado em SQL, ETL em Python, sem dependência de arquivo local.
+            </li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h3>Ficha técnica</h3>
+          <ul class="side-list">
+            <li><span>Ferramenta</span><span>Power BI</span></li>
+            <li><span>Banco de dados</span><span>PostgreSQL</span></li>
+            <li><span>Modelo</span><span>Estrela — 1 fato, 8 dimensões</span></li>
+            <li><span>Pedidos analisados</span><span>1.000</span></li>
+            <li><span>Período coberto</span><span>Jul/2025 – Jul/2026</span></li>
+            <li><span>Páginas</span><span>2</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Screenshots</div>
+        <h2>Todas as páginas</h2>
+        <p>Clique em uma imagem para ampliar.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Capa</h3>
+            <span>Prévia executiva — OTIF, pedidos e tendência</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Logistica1/01-capa.png" alt="Página de capa do dashboard Logística1" loading="lazy" />
+        </figure>
+
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Análise — modo escuro</h3>
+            <span>Filtros, KPIs, pulso mensal e rankings</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Logistica1/02-analise-escuro.png" alt="Página de análise do dashboard Logística1 em modo escuro" loading="lazy" />
+        </figure>
+
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Análise — modo claro</h3>
+            <span>Mesma página, tema claro</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Logistica1/03-analise-claro.png" alt="Página de análise do dashboard Logística1 em modo claro" loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Leo Deitos. Todos os direitos reservados.</span>
+      <a href="../index.html#projetos">← Voltar ao portfólio</a>
+    </div>
+  </footer>
+
+  <div class="lightbox" data-lightbox>
+    <button class="lightbox-close" data-lightbox-close aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <img src="" alt="" />
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
