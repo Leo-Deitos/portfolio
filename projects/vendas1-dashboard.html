@@ -50,6 +50,16 @@
   --c1:#9A6400; --c2:#4A4236; --c3:#B07A2B; --c4:#6B7A5A;
   --c5:#8C5A3C; --c6:#5E6B7A; --c7:#A8894C; --c8:#7A5C6B;
   --c9:#3F5750; --c10:#96703F; --c11:#5A5347; --c12:#7E8A6B;
+
+  /* Tokens da identidade do relatorio Power BI. Os valores foram
+     amostrados dos proprios prints das paginas, nao estimados. */
+  --lateral:#EDE6D8;         /* barra lateral */
+  --lateral-btn:#E2D8C4;     /* botao de icone na lateral */
+  --barra:#B08A16;           /* colunas e barras dos graficos */
+  --destaque:#E9A948;        /* painel cheio do TOP VENDEDORES */
+  --destaque-texto:#1A1510;
+  --painel:#FFFFFF;          /* fundo dos cartoes */
+  --painel-borda:#DED5C4;
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
@@ -77,6 +87,14 @@
   --c1:#F5A623; --c2:#C9BCA3; --c3:#E0873A; --c4:#9DBE7E;
   --c5:#D98E6A; --c6:#8FA8C4; --c7:#E3C77A; --c8:#C49AB0;
   --c9:#7FB3A6; --c10:#D9A85F; --c11:#A69B85; --c12:#B6C79A;
+
+  --lateral:#201F1D;
+  --lateral-btn:#262522;
+  --barra:#E0C244;
+  --destaque:#E9A948;
+  --destaque-texto:#1A1510;
+  --painel:#1A1510;
+  --painel-borda:#3B342A;
 }
 :root{
   --raio:10px;
@@ -84,65 +102,106 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
-  background:var(--fundo);
+  /* Os dois brilhos diagonais reproduzem a arte de fundo das paginas do
+     relatorio, que no Power BI vem de um SVG. Aqui saem de gradiente,
+     para a pagina continuar sendo um arquivo so. */
+  background:
+    radial-gradient(70% 55% at 8% -10%, rgba(245,166,35,.10) 0%, transparent 62%),
+    radial-gradient(75% 60% at 100% 108%, rgba(245,166,35,.13) 0%, transparent 66%),
+    var(--fundo);
+  background-attachment:fixed;
   color:var(--texto);
   font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
   font-size:14px;
   line-height:1.45;
   -webkit-font-smoothing:antialiased;
+  display:flex;
+  min-height:100vh;
 }
+
+/* -------------------------------------------------- barra lateral */
+.lateral{
+  position:sticky;top:0;align-self:flex-start;
+  height:100vh;width:92px;flex:none;z-index:50;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:18px 0 22px;margin:12px 0 12px 12px;
+  background:var(--lateral);border-radius:18px;
+  border:1px solid var(--borda);
+}
+.lateral .logo{
+  width:52px;height:44px;display:grid;place-items:center;margin-bottom:6px;
+}
+.lateral .logo svg{width:44px;height:auto}
+.lateral .risco{width:52px;height:1px;background:var(--borda);margin:2px 0 14px}
+.lateral .espaco{flex:1}
+.lateral button,.lateral a{
+  width:52px;height:52px;border-radius:15px;flex:none;
+  display:grid;place-items:center;color:var(--texto-3);
+  background:transparent;border:1px solid transparent;transition:.15s;
+}
+.lateral button:hover,.lateral a:hover{color:var(--acento);background:var(--lateral-btn)}
+.lateral button[aria-selected="true"]{
+  background:var(--lateral-btn);color:var(--acento);
+  border-color:var(--borda);
+  box-shadow:0 2px 10px -2px rgba(0,0,0,.5);
+}
+.lateral button:focus-visible,.lateral a:focus-visible{
+  outline:2px solid var(--acento);outline-offset:2px}
+.lateral svg{width:24px;height:24px;fill:none;stroke:currentColor;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.lateral .marca-svg{stroke:none}
+
+.corpo{flex:1;min-width:0;display:flex;flex-direction:column}
 h1,h2,h3{margin:0;font-weight:600;letter-spacing:.2px}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
-/* ------------------------------------------------------ cabecalho */
+/* ------------------------------------------------------ cabecalho
+   No relatorio o titulo fica numa placa recortada e os filtros numa
+   segunda placa a direita, na mesma linha. O recorte em diagonal e
+   feito com clip-path, e some no mobile. */
 header{
   position:sticky;top:0;z-index:40;
-  background:var(--superficie);
-  border-bottom:1px solid var(--borda);
+  padding:12px 16px 10px;
+  display:flex;flex-wrap:wrap;align-items:stretch;gap:12px;
+  background:linear-gradient(180deg,var(--fundo) 72%,transparent);
 }
-.topo{
-  display:flex;flex-wrap:wrap;align-items:center;gap:16px;
-  padding:14px 22px 0;
+.placa{
+  background:var(--painel);border:1px solid var(--painel-borda);
+  border-radius:14px;box-shadow:var(--sombra);
 }
-.marca{display:flex;align-items:center;gap:12px;margin-right:auto}
-.marca .selo{
-  width:34px;height:34px;border-radius:9px;flex:none;
-  background:linear-gradient(135deg,var(--acento),var(--acento-forte));
-  display:grid;place-items:center;font-weight:700;font-size:15px;
+.titulo-placa{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 40px 14px 22px;min-width:0;
+  clip-path:polygon(0 0, calc(100% - 26px) 0, 100% 100%, 0 100%);
 }
-.marca h1{font-size:16px}
-.marca p{margin:0;font-size:11.5px;color:var(--texto-3)}
+.titulo-placa h1{
+  font-size:19px;font-weight:300;letter-spacing:.5px;text-transform:uppercase;
+  white-space:nowrap;
+}
+.titulo-placa h1 b{font-weight:700}
+.titulo-placa p{margin:0;font-size:11px;color:var(--texto-3);white-space:nowrap}
 .tema{
   padding:7px 14px;border-radius:999px;font-size:12px;font-weight:600;
   border:1px solid var(--borda);background:var(--superficie-2);
-  color:var(--texto-2);white-space:nowrap;transition:.15s;
+  color:var(--texto-2);white-space:nowrap;transition:.15s;align-self:center;
 }
 .tema:hover{border-color:var(--acento);color:var(--acento)}
 .tema:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
 
-nav{display:flex;gap:2px;padding:10px 22px 0;overflow-x:auto}
-nav button{
-  padding:9px 16px;border-radius:8px 8px 0 0;
-  font-size:12.5px;font-weight:600;letter-spacing:.4px;
-  color:var(--texto-3);white-space:nowrap;
-  border-bottom:2px solid transparent;
-}
-nav button:hover{color:var(--texto-2);background:rgba(255,255,255,.04)}
-nav button[aria-selected="true"]{
-  color:var(--texto);background:var(--superficie);
-  border-bottom-color:var(--acento);
-}
-
 /* -------------------------------------------------------- filtros */
 .filtros{
-  display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;
-  padding:12px 22px 14px;background:var(--superficie);
-  border-top:1px solid var(--borda);
+  display:flex;flex-wrap:wrap;gap:16px 20px;align-items:center;
+  padding:10px 20px;flex:1;min-width:0;
 }
-.campo{display:flex;flex-direction:column;gap:5px;min-width:0}
+.campo{display:flex;align-items:center;gap:9px;min-width:0}
 .campo>span{
-  font-size:10px;font-weight:700;letter-spacing:.9px;
-  text-transform:uppercase;color:var(--texto-3);
+  font-size:10.5px;font-weight:700;letter-spacing:.9px;
+  text-transform:uppercase;color:var(--texto-2);white-space:nowrap;
+}
+.campo>span::after{content:":"}
+@media(max-width:860px){
+  .titulo-placa{clip-path:none;padding-right:22px}
+  header{position:static}
 }
 .chips{display:flex;flex-wrap:wrap;gap:4px}
 .chip{
@@ -173,28 +232,77 @@ section[role="tabpanel"].ativa{display:block}
 @media(max-width:1080px){.g-2,.g-2b{grid-template-columns:1fr}}
 
 .cartao{
-  background:var(--superficie);border:1px solid var(--borda);
+  background:var(--painel);border:1px solid var(--painel-borda);
   border-radius:var(--raio);padding:16px 18px;min-width:0;
+  box-shadow:var(--sombra);
 }
 .cartao>h2{
-  font-size:11px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
-  color:var(--texto-3);margin-bottom:12px;
+  font-size:11.5px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
+  color:var(--texto);margin-bottom:12px;
 }
 .cartao .nota{font-size:11px;color:var(--texto-3);margin-top:10px}
 
-/* ------------------------------------------------------- kpi cards */
-.kpi{position:relative;overflow:hidden}
-.kpi::after{
-  content:"";position:absolute;inset:0 auto 0 0;width:3px;
-  background:linear-gradient(180deg,var(--acento),var(--acento-forte));
+/* Painel cheio em ambar, como o TOP VENDEDORES do relatorio. */
+.cartao.destaque{background:var(--destaque);border-color:var(--destaque);color:var(--destaque-texto)}
+.cartao.destaque>h2{color:var(--destaque-texto);border-bottom:1px solid rgba(26,21,16,.25);padding-bottom:10px}
+.cartao.destaque .linha-rank:hover{background:rgba(26,21,16,.07)}
+.cartao.destaque .linha-rank .pos{
+  background:rgba(26,21,16,.14);color:var(--destaque-texto);
+  width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  font-weight:700;font-size:11px;
 }
+.cartao.destaque .linha-rank .nome,
+.cartao.destaque .linha-rank .num{color:var(--destaque-texto)}
+.cartao.destaque .linha-rank .eq{color:rgba(26,21,16,.65)}
+.cartao.destaque .linha-rank img{border-color:rgba(26,21,16,.25)}
+.cartao.destaque .barra-fundo{background:rgba(26,21,16,.15)}
+.cartao.destaque .barra-fundo i{background:var(--destaque-texto)}
+
+/* ------------------------------------------------------- kpi cards
+   Reproduz o cartao do relatorio: aba ambar no canto superior
+   esquerdo, quadrado do icone a direita, valor grande, a linha
+   "Ano Anterior" com o selo de variacao, e a mini-barra comparativa
+   com a marca tracejada do ano anterior. */
+.kpi{position:relative;overflow:hidden;padding-top:20px}
+.kpi::before{
+  content:"";position:absolute;top:0;left:0;width:118px;height:7px;
+  border-radius:0 0 6px 0;
+  background:linear-gradient(90deg,var(--acento-forte),var(--acento));
+}
+.kpi .cab{display:flex;align-items:flex-start;gap:12px}
 .kpi .rotulo{
-  font-size:11px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
-  color:var(--texto-3);
+  font-size:11.5px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
+  color:var(--texto);flex:1;min-width:0;
 }
-.kpi .valor{font-size:30px;font-weight:600;letter-spacing:-.5px;margin:6px 0 2px;
+.kpi .icone{
+  width:32px;height:32px;border-radius:9px;flex:none;display:grid;place-items:center;
+  background:linear-gradient(140deg,var(--acento-forte),var(--acento));
+  color:#1A1510;font-size:15px;font-weight:700;
+}
+.kpi .valor{font-size:30px;font-weight:600;letter-spacing:-.5px;margin:8px 0 10px;
   font-variant-numeric:tabular-nums}
-.kpi .rodape{display:flex;align-items:baseline;gap:8px;font-size:12px;color:var(--texto-3)}
+.kpi .rodape{display:flex;align-items:center;flex-wrap:wrap;gap:7px;
+  font-size:11.5px;color:var(--texto-2)}
+.kpi .rodape .var{
+  padding:1px 7px;border-radius:5px;font-size:11px;
+  background:rgba(95,191,122,.18);
+}
+.kpi .rodape .var.desce{background:rgba(232,105,95,.18)}
+.kpi .rodape .var.nulo{background:transparent}
+.kpi .comparativo{margin-top:14px}
+.kpi .comparativo .leg{
+  font-size:10px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;
+  color:var(--texto-3);margin-bottom:6px;
+}
+.kpi .mini{position:relative;height:16px;background:transparent}
+.kpi .mini i{
+  display:block;height:100%;border-radius:2px;
+  background:linear-gradient(90deg,var(--acento),var(--acento-forte));
+}
+.kpi .mini u{
+  position:absolute;top:-3px;bottom:-3px;width:0;
+  border-left:2px dashed var(--texto);opacity:.85;
+}
 .var{font-weight:700;font-variant-numeric:tabular-nums}
 .var.sobe{color:var(--positivo)}
 .var.desce{color:var(--negativo)}
@@ -281,32 +389,67 @@ footer{color:var(--texto-3);font-size:11px;padding:22px 22px 34px;max-width:1560
 </head>
 <body>
 
+<!-- Barra lateral: mesma anatomia do relatorio - logo no topo, as quatro
+     paginas no meio, portfolio e LinkedIn embaixo. -->
+<aside class="lateral" role="tablist" id="nav" aria-label="Páginas">
+  <span class="logo" aria-hidden="true">
+    <svg viewBox="0 0 44 34" class="marca-svg" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 27 L20 6 L26 15 L40 3" fill="none" stroke="#F5A623"
+            stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="40" cy="3" r="3" fill="#F5A623"/>
+      <path d="M4 31 L38 31" stroke="#F5A623" stroke-opacity=".35" stroke-width="2"
+            stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="risco" aria-hidden="true"></span>
+
+  <button role="tab" data-pagina="home" aria-selected="true" title="Home" aria-label="Home">
+    <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg>
+  </button>
+  <button role="tab" data-pagina="perf" aria-selected="false" title="Performance" aria-label="Performance">
+    <svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V7"/></svg>
+  </button>
+  <button role="tab" data-pagina="decomp" aria-selected="false" title="Decomposição" aria-label="Decomposição">
+    <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2.4"/><circle cx="19" cy="6" r="2.4"/>
+      <circle cx="19" cy="18" r="2.4"/><path d="M7.4 11 16.6 6.8M7.4 13l9.2 4.2"/></svg>
+  </button>
+  <button role="tab" data-pagina="kr" aria-selected="false" title="Key Results" aria-label="Key Results">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/>
+      <circle cx="12" cy="12" r="1" fill="currentColor"/></svg>
+  </button>
+
+  <span class="espaco"></span>
+
+  <a href="https://github.com/Leo-Deitos/portfolio" target="_blank" rel="noopener"
+     title="Portfólio" aria-label="Portfólio">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/>
+      <path d="M3.5 12h17M12 3.5c2.2 2.4 3.3 5.3 3.3 8.5S14.2 18.1 12 20.5c-2.2-2.4-3.3-5.3-3.3-8.5S9.8 5.9 12 3.5z"/></svg>
+  </a>
+  <a href="https://www.linkedin.com/in/leomar-deitos/" target="_blank" rel="noopener"
+     title="LinkedIn" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/>
+      <path d="M8 10.5V17M8 7.4v.1M12 17v-3.6c0-1.6 1-2.6 2.3-2.6s2.2 1 2.2 2.6V17"/></svg>
+  </a>
+</aside>
+
+<div class="corpo">
 <header>
-  <div class="topo">
-    <div class="marca">
-      <div class="selo">V</div>
-      <div>
-        <h1>Dashboard de Vendas</h1>
-        <p id="sub-periodo">carregando…</p>
-      </div>
+  <div class="placa titulo-placa">
+    <div>
+      <h1>Dashboard de <b>Vendas</b></h1>
+      <p id="sub-periodo">carregando…</p>
     </div>
-    <button id="btn-tema" class="tema" type="button">☽  escuro</button>
   </div>
 
-  <nav role="tablist" id="nav">
-    <button role="tab" data-pagina="home"    aria-selected="true">HOME</button>
-    <button role="tab" data-pagina="perf"    aria-selected="false">PERFORMANCE</button>
-    <button role="tab" data-pagina="decomp"  aria-selected="false">DECOMPOSIÇÃO</button>
-    <button role="tab" data-pagina="kr"      aria-selected="false">KEY RESULTS</button>
-  </nav>
-
-  <div class="filtros">
+  <div class="placa filtros">
     <label class="campo"><span>Ano</span><div class="chips" id="f-ano"></div></label>
     <label class="campo"><span>Mês</span><div class="chips" id="f-mes"></div></label>
-    <label class="campo"><span>Linha de produto</span><div class="chips" id="f-linha"></div></label>
-    <label class="campo medida"><span>Medida em análise</span><div class="chips" id="f-medida"></div></label>
+    <label class="campo"><span>Linha</span><div class="chips" id="f-linha"></div></label>
+    <label class="campo medida"><span>Análise</span><div class="chips" id="f-medida"></div></label>
     <button class="limpar" id="btn-limpar">limpar filtros</button>
   </div>
+
+  <button id="btn-tema" class="tema" type="button">☽  escuro</button>
 </header>
 
 <main>
@@ -317,6 +460,7 @@ footer{color:var(--texto-3);font-size:11px;padding:22px 22px 34px;max-width:1560
 </main>
 
 <footer id="rodape"></footer>
+</div>
 
 <div id="tooltip" role="tooltip" aria-hidden="true"></div>
 
@@ -822,7 +966,7 @@ function graficoCombo(dados) {
   return criar("svg", { viewBox: "0 0 " + L + " " + A, role: "img" }, [
     criar("defs", {}, [
       criar("linearGradient", { id: idGrad, x1: "0", y1: "0", x2: "0", y2: "1" }, [
-        criar("stop", { offset: "0%",   "stop-color": cor("--acento-forte") }),
+        criar("stop", { offset: "0%",   "stop-color": cor("--barra") }),
         criar("stop", { offset: "100%", "stop-color": cor("--acento") }),
       ]),
     ]),
@@ -856,7 +1000,7 @@ function graficoBarras(itens, aoPassar) {
     criar("defs", {}, [
       criar("linearGradient", { id: idGrad, x1: "0", y1: "0", x2: "1", y2: "0" }, [
         criar("stop", { offset: "0%",   "stop-color": cor("--acento") }),
-        criar("stop", { offset: "100%", "stop-color": cor("--acento-forte") }),
+        criar("stop", { offset: "100%", "stop-color": cor("--barra") }),
       ]),
     ]),
     ...g,
@@ -1003,16 +1147,46 @@ function cartao(titulo, conteudo, classe) {
     [titulo ? criar("h2", { text: titulo }) : null].concat(conteudo));
 }
 
-function cartaoKPI(rotulo, valor, pctYoY, textoBase) {
+/* Cartao no formato do relatorio: aba ambar, quadrado do icone, valor,
+   a linha "Ano Anterior <valor> <selo>" e a mini-barra comparativa.
+   `op` traz o icone e os valores bruto/anterior; quando nao ha ano
+   anterior na base, a mini-barra e a linha de referencia somem, em vez
+   de mostrar uma comparacao inventada. */
+function cartaoKPI(rotulo, valor, pctYoY, textoBase, op) {
   const d = detalheYoY(pctYoY);
-  return criar("div", { class: "cartao kpi" }, [
-    criar("div", { class: "rotulo", text: rotulo }),
-    criar("div", { class: "valor", text: valor }),
-    criar("div", { class: "rodape" }, [
-      criar("span", { class: "var " + d.classe, text: d.texto }),
-      criar("span", { text: textoBase }),
+  op = op || {};
+  const temLY = op.anterior != null && op.anterior > 0;
+
+  const rodape = criar("div", { class: "rodape" },
+    temLY
+      ? [criar("span", { text: "Ano Anterior" }),
+         criar("b", { text: op.anteriorFmt }),
+         criar("span", { class: "var " + d.classe, text: d.texto })]
+      : [criar("span", { text: textoBase })]);
+
+  const filhos = [
+    criar("div", { class: "cab" }, [
+      criar("div", { class: "rotulo", text: rotulo }),
+      criar("div", { class: "icone", text: op.icone || "" }),
     ]),
-  ]);
+    criar("div", { class: "valor", text: valor }),
+    rodape,
+  ];
+
+  if (temLY) {
+    // a barra representa o valor atual; o tracejado marca o ano anterior
+    const teto = Math.max(op.atual, op.anterior) * 1.15;
+    const razao = op.atual / teto;
+    const marca = op.anterior / teto;
+    filhos.push(criar("div", { class: "comparativo" }, [
+      criar("div", { class: "leg", text: "vs ano anterior" }),
+      criar("div", { class: "mini" }, [
+        criar("i", { style: "width:" + (razao * 100).toFixed(1) + "%" }),
+        criar("u", { style: "left:" + (marca * 100).toFixed(1) + "%" }),
+      ]),
+    ]));
+  }
+  return criar("div", { class: "cartao kpi" }, filhos);
 }
 
 /* Provedores de tooltip - um por tipo de item. Todos devolvem a serie
@@ -1119,9 +1293,15 @@ function paginaHome(raiz) {
   const base = temAnoAnterior() ? "vs. " + (Number(F.ano) - 1) : "sem ano anterior na base";
 
   raiz.appendChild(criar("div", { class: "grade g-kpis" }, [
-    cartaoKPI("Faturamento",    fmtMoeda.format(fatA), variacao(fatA, fatL), base),
-    cartaoKPI("Margem Bruta",   fmtMoeda.format(marA), variacao(marA, marL), base),
-    cartaoKPI("Notas Emitidas", fmtInt.format(notA),   variacao(notA, notL), base),
+    cartaoKPI("Faturamento", fmtMoeda.format(fatA), variacao(fatA, fatL), base,
+      { icone: "$", atual: fatA, anterior: fatL,
+        anteriorFmt: fatL == null ? "" : fmtMoeda.format(fatL) }),
+    cartaoKPI("Margem Bruta", fmtMoeda.format(marA), variacao(marA, marL), base,
+      { icone: "%", atual: marA, anterior: marL,
+        anteriorFmt: marL == null ? "" : fmtMoeda.format(marL) }),
+    cartaoKPI("Notas Emitidas", fmtInt.format(notA), variacao(notA, notL), base,
+      { icone: "#", atual: notA, anterior: notL,
+        anteriorFmt: notL == null ? "" : fmtInt.format(notL) }),
   ]));
 
   // ---- evolucao no tempo + ranking de vendedores
@@ -1159,7 +1339,8 @@ function paginaHome(raiz) {
           ? "Colunas: período selecionado. Linha tracejada: mesmo mês do ano anterior."
           : "Sem ano anterior no período selecionado — só as colunas do período." }),
     ]),
-    cartao("TOP VENDEDORES", [listaRanking(vend, it => ttVendedor(it.id))]),
+    cartao("TOP VENDEDORES", [listaRanking(vend.slice(0, 3), it => ttVendedor(it.id))],
+           "destaque"),
   ]));
 
   // ---- produtos
@@ -1695,7 +1876,7 @@ function renderizar() {
   TT.esconder();
   atualizarPressionados();
 
-  document.querySelectorAll('nav button').forEach(b =>
+  document.querySelectorAll('#nav button[data-pagina]').forEach(b =>
     b.setAttribute("aria-selected", String(b.dataset.pagina === F.pagina)));
   document.querySelectorAll('section[role="tabpanel"]').forEach(s =>
     s.classList.toggle("ativa", s.id === PAGINAS[F.pagina].alvo.slice(1)));
@@ -1724,7 +1905,7 @@ function arrancar() {
 
   montarFiltros();
 
-  document.querySelectorAll("nav button").forEach(b =>
+  document.querySelectorAll("#nav button[data-pagina]").forEach(b =>
     b.addEventListener("click", () => { F.pagina = b.dataset.pagina; renderizar(); }));
 
   $("#btn-limpar").addEventListener("click", () => {
