@@ -929,3 +929,110 @@ section {
 @media (max-width: 640px) {
   .nota-ferramenta { padding: 20px; }
 }
+
+/* ---------- Card de projeto: dois destinos ---------- */
+/* O card deixou de ser um <a> unico: agora cada projeto leva ao painel
+   navegavel E ao estudo de caso, seguindo a regra de que todo projeto do
+   portfolio tem versao clicavel. */
+
+.project-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.project-card-actions .project-card-link {
+  margin-top: 0;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.project-card-actions .project-card-link svg {
+  transition: transform 0.15s ease;
+}
+
+.project-card-actions .project-card-link:hover svg,
+.project-card-actions .project-card-link:focus-visible svg {
+  transform: translateX(3px);
+}
+
+/* Acao secundaria: mesmo peso tipografico, menos saturacao */
+.project-card-link.project-card-link--ghost {
+  color: var(--text-muted);
+}
+
+.project-card-link.project-card-link--ghost:hover,
+.project-card-link.project-card-link--ghost:focus-visible {
+  color: var(--text);
+}
+
+.project-card-actions .project-card-link:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* O card nao e mais clicavel por inteiro; o realce de hover continua,
+   mas quem responde ao ponteiro sao os dois links. */
+.project-card:hover .project-card-link svg {
+  transform: none;
+}
+
+
+/* ---------- Filtro por ferramenta ---------- */
+/* Montado por JS a partir dos chips azuis dos cards, entao cresce sozinho
+   quando um projeto novo entra na grade. Fica oculto sem JS. */
+
+.tool-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.tool-filter-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+.tool-filter-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.tool-chip {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.tool-chip:hover { color: var(--text); border-color: #2c3e63; }
+
+.tool-chip[aria-pressed="true"] {
+  color: #7db0ff;
+  background: rgba(59, 130, 246, 0.14);
+  border-color: rgba(59, 130, 246, 0.45);
+}
+
+.tool-chip .count {
+  font-weight: 400;
+  color: var(--text-faint);
+  margin-left: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tool-chip[aria-pressed="true"] .count { color: inherit; opacity: 0.75; }
+
+.project-card[hidden] { display: none; }

@@ -76,190 +76,125 @@
         </p>
       </div>
 
-      <div class="project-grid">
+      <div class="tool-filter" id="toolFilter" hidden>
+        <span class="tool-filter-label">Filtrar por ferramenta</span>
+        <div class="tool-filter-chips" role="group" aria-label="Filtrar projetos por ferramenta"></div>
+      </div>
 
-        <a class="project-card" href="projects/agro1-dashboard.html">
-          <div class="project-card-media project-card-media--mock">
-            <svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="mockBg" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#121b2e"/>
-                  <stop offset="100%" stop-color="#0a0f1c"/>
-                </linearGradient>
-              </defs>
-              <rect width="640" height="360" fill="url(#mockBg)"/>
-              <rect x="32" y="32" width="576" height="70" rx="10" fill="#16223b" stroke="#1f2d47"/>
-              <rect x="48" y="48" width="120" height="10" rx="5" fill="#8b96ab"/>
-              <rect x="48" y="66" width="80" height="18" rx="4" fill="#e8ecf4"/>
-              <rect x="200" y="48" width="120" height="10" rx="5" fill="#8b96ab"/>
-              <rect x="200" y="66" width="80" height="18" rx="4" fill="#e8ecf4"/>
-              <rect x="352" y="48" width="120" height="10" rx="5" fill="#8b96ab"/>
-              <rect x="352" y="66" width="80" height="18" rx="4" fill="#e8ecf4"/>
-              <rect x="32" y="120" width="576" height="208" rx="10" fill="#121b2e" stroke="#1f2d47"/>
-              <g>
-                <rect x="80"  y="260" width="34" height="48" rx="3" fill="#3b82f6"/>
-                <rect x="122" y="220" width="34" height="88" rx="3" fill="#f5a623"/>
-                <rect x="164" y="180" width="34" height="128" rx="3" fill="#a855f7"/>
-                <rect x="240" y="240" width="34" height="68" rx="3" fill="#3b82f6"/>
-                <rect x="282" y="200" width="34" height="108" rx="3" fill="#f5a623"/>
-                <rect x="324" y="150" width="34" height="158" rx="3" fill="#a855f7"/>
-                <rect x="400" y="270" width="34" height="38" rx="3" fill="#3b82f6"/>
-                <rect x="442" y="245" width="34" height="63" rx="3" fill="#f5a623"/>
-                <rect x="484" y="210" width="34" height="98" rx="3" fill="#a855f7"/>
-              </g>
-              <circle cx="560" cy="150" r="16" fill="#16c784" opacity="0.9"/>
-              <path d="M552 150 l6 6 12 -14" stroke="#0a0f1c" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="media-live-badge">Ao vivo</span>
-          </div>
-          <div class="project-card-body">
-            <div class="project-tags">
-              <span class="tag">HTML · CSS · JS</span>
-              <span class="tag tag-green">Interativo</span>
-              <span class="tag tag-purple">Dados fictícios</span>
-            </div>
-            <h3>Agro1 — Painel Interativo</h3>
-            <p>
-              O mesmo painel de cotações de grãos, reconstruído em HTML/JS puro — sem Power BI.
-              Filtro de ano, KPIs calculados ao vivo e alternância de tema claro/escuro, tudo clicável.
-            </p>
-            <span class="project-card-link">
-              Abrir painel
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </a>
+      <div class="project-grid" id="projectGrid">
 
-        <a class="project-card" href="projects/logistica1-dashboard.html">
-          <div class="project-card-media project-card-media--mock">
-            <svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="mockBgLog" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#0e1b26"/>
-                  <stop offset="100%" stop-color="#060d14"/>
-                </linearGradient>
-              </defs>
-              <rect width="640" height="360" fill="url(#mockBgLog)"/>
-              <rect x="32" y="32" width="576" height="70" rx="10" fill="#122430" stroke="#1c3140"/>
-              <rect x="48" y="48" width="120" height="10" rx="5" fill="#8fa7a7"/>
-              <rect x="48" y="66" width="80" height="18" rx="4" fill="#e7f1f1"/>
-              <rect x="200" y="48" width="120" height="10" rx="5" fill="#8fa7a7"/>
-              <rect x="200" y="66" width="80" height="18" rx="4" fill="#e7f1f1"/>
-              <rect x="352" y="48" width="120" height="10" rx="5" fill="#8fa7a7"/>
-              <rect x="352" y="66" width="80" height="18" rx="4" fill="#e7f1f1"/>
-              <rect x="32" y="120" width="576" height="208" rx="10" fill="#0e1b26" stroke="#1c3140"/>
-              <g>
-                <rect x="80"  y="260" width="26" height="48" rx="3" fill="#2dd4c8"/>
-                <rect x="114" y="230" width="26" height="78" rx="3" fill="#2dd4c8"/>
-                <rect x="148" y="200" width="26" height="108" rx="3" fill="#2dd4c8"/>
-                <rect x="182" y="245" width="26" height="63" rx="3" fill="#2dd4c8"/>
-                <rect x="216" y="215" width="26" height="93" rx="3" fill="#2dd4c8"/>
-                <rect x="250" y="180" width="26" height="128" rx="3" fill="#2dd4c8"/>
-                <rect x="284" y="230" width="26" height="78" rx="3" fill="#2dd4c8"/>
-                <rect x="318" y="255" width="26" height="53" rx="3" fill="#2dd4c8"/>
-                <rect x="352" y="150" width="26" height="158" rx="3" fill="#2dd4c8"/>
-              </g>
-              <polyline points="93,240 127,220 161,190 195,225 229,205 263,170 297,220 331,245 365,140" fill="none" stroke="#4d8fef" stroke-width="3"/>
-              <circle cx="560" cy="150" r="16" fill="#16c784" opacity="0.9"/>
-              <path d="M552 150 l6 6 12 -14" stroke="#060d14" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="media-live-badge">Ao vivo</span>
-          </div>
-          <div class="project-card-body">
-            <div class="project-tags">
-              <span class="tag">HTML · CSS · JS</span>
-              <span class="tag tag-green">Interativo</span>
-              <span class="tag tag-purple">Dados fictícios</span>
-            </div>
-            <h3>Logística1 — Painel Interativo</h3>
-            <p>
-              O mesmo Command Center logístico, reconstruído em HTML/JS puro — sem Power BI. Filtros
-              de mês, região, categoria, transportadora e modal recalculam KPIs e gráficos na hora,
-              com tema claro/escuro alternável.
-            </p>
-            <span class="project-card-link">
-              Abrir painel
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </a>
-
-        <a class="project-card" href="projects/logistica1.html">
+        <article class="project-card">
           <div class="project-card-media">
-            <img src="assets/screenshots/Logistica1/01-capa.png" alt="Página de capa do dashboard Logística1" loading="lazy" />
+            <img src="assets/screenshots/Agro1/01-visao-geral.png" alt="Visão geral do dashboard Agro1 no Power BI" loading="lazy" />
+            <span class="media-live-badge">Painel ao vivo</span>
+          </div>
+          <div class="project-card-body">
+            <div class="project-tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">DAX</span>
+              <span class="tag">HTML · JS</span>
+              <span class="tag tag-green">Agronegócio</span>
+              <span class="tag tag-purple">Dados fictícios</span>
+            </div>
+            <h3>Agro1 — Cotações de Grãos</h3>
+            <p>
+              Preço, custo e margem de soja, milho e trigo, com produção por mesorregião e
+              histórico de cotação mensal. Construído em Power BI com modelo estrela e medidas
+              DAX; publicado aqui como painel navegável, com filtro de ano e KPIs recalculados
+              na hora.
+            </p>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="projects/agro1-dashboard.html">
+                Abrir painel
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a class="project-card-link project-card-link--ghost" href="projects/agro1.html">
+                Ver o processo
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media">
+            <img src="assets/screenshots/Logistica1/01-capa.png" alt="Página de capa do dashboard Logística1 no Power BI" loading="lazy" />
+            <span class="media-live-badge">Painel ao vivo</span>
           </div>
           <div class="project-card-body">
             <div class="project-tags">
               <span class="tag">Power BI</span>
               <span class="tag">PostgreSQL</span>
+              <span class="tag">Python</span>
+              <span class="tag">HTML · JS</span>
               <span class="tag tag-green">Logística</span>
+              <span class="tag tag-purple">Dados fictícios</span>
             </div>
-            <h3>Logística1 — Command Center Logístico</h3>
+            <h3>Logística1 — Command Center</h3>
             <p>
               Nível de serviço (OTIF), custo logístico e risco operacional de 1.000 pedidos, com
-              modelo estrela migrado para PostgreSQL e consumido direto pelo Power BI.
+              modelo estrela migrado para PostgreSQL e consumido direto pelo Power BI. No painel
+              navegável, filtros de mês, região, categoria, transportadora e modal recalculam
+              KPIs e gráficos na hora.
             </p>
-            <span class="project-card-link">
-              Ver estudo de caso
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="projects/logistica1-dashboard.html">
+                Abrir painel
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a class="project-card-link project-card-link--ghost" href="projects/logistica1.html">
+                Ver o processo
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
           </div>
-        </a>
+        </article>
 
-        <a class="project-card" href="projects/rh1.html">
+        <article class="project-card">
           <div class="project-card-media">
-            <img src="assets/screenshots/RH1/01-funcionarios.png" alt="Página Funcionários do dashboard RH1" loading="lazy" />
-            <span class="media-live-badge">Ao vivo</span>
+            <img src="assets/screenshots/RH1/01-funcionarios.png" alt="Página Funcionários do dashboard RH1 no Power BI" loading="lazy" />
+            <span class="media-live-badge">Painel ao vivo</span>
           </div>
           <div class="project-card-body">
             <div class="project-tags">
               <span class="tag">Power BI</span>
+              <span class="tag">DAX</span>
+              <span class="tag">HTML · JS</span>
               <span class="tag tag-green">Recursos Humanos</span>
               <span class="tag tag-purple">Dados fictícios</span>
             </div>
-            <h3>RH1 — Painel de Gestão de Pessoas</h3>
+            <h3>RH1 — Gestão de Pessoas</h3>
             <p>
-              Headcount, turnover, qualidade de contratação, horas extras e absenteísmo, com menu de
-              navegação próprio e análise completa dos indicadores.
+              Headcount, turnover, qualidade de contratação, horas extras e absenteísmo ao longo de
+              18 anos de histórico. Construído em Power BI com medidas DAX; publicado aqui como
+              painel navegável, com filtros de escolaridade, gênero, faixa etária e cargo que
+              recalculam todos os indicadores.
             </p>
-            <span class="project-card-link">
-              Ver estudo de caso
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </a>
-
-        <a class="project-card" href="projects/agro1.html">
-          <div class="project-card-media">
-            <img src="assets/screenshots/Agro1/01-visao-geral.png" alt="Visão geral do dashboard Agro1" loading="lazy" />
-          </div>
-          <div class="project-card-body">
-            <div class="project-tags">
-              <span class="tag">Power BI</span>
-              <span class="tag tag-green">Agronegócio</span>
-              <span class="tag tag-purple">Grãos</span>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="projects/rh1-dashboard.html">
+                Abrir painel
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a class="project-card-link project-card-link--ghost" href="projects/rh1.html">
+                Ver o processo
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
             </div>
-            <h3>Agro1 — Painel de Cotações de Grãos</h3>
-            <p>
-              Acompanhamento de preço, custo e margem de soja, milho e trigo, com produção
-              por mesorregião e histórico de cotação mensal.
-            </p>
-            <span class="project-card-link">
-              Ver estudo de caso
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
           </div>
-        </a>
+        </article>
+
       </div>
 
       <p class="more-note">Mais projetos em breve.</p>
@@ -292,7 +227,7 @@
             </span>
           </a>
 
-          <a class="contact-item" href="https://github.com/71-leo" target="_blank" rel="noopener noreferrer">
+          <a class="contact-item" href="https://github.com/Leo-Deitos" target="_blank" rel="noopener noreferrer">
             <span class="contact-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.73 0c2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.24 2.76.12 3.05.73.8 1.18 1.83 1.18 3.09 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z" fill="currentColor"/>
@@ -300,11 +235,11 @@
             </span>
             <span class="contact-text">
               <span class="label">GitHub</span>
-              <span class="value">github.com/71-leo</span>
+              <span class="value">github.com/Leo-Deitos</span>
             </span>
           </a>
 
-          <a class="contact-item" href="mailto:leomardeitos@outlook.com">
+          <a class="contact-item" href="mailto:leomardeitos.dev@gmail.com">
             <span class="contact-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.6"/>
@@ -313,20 +248,7 @@
             </span>
             <span class="contact-text">
               <span class="label">E-mail</span>
-              <span class="value">leomardeitos@outlook.com</span>
-            </span>
-          </a>
-
-          <a class="contact-item" href="mailto:leomar7deitos@gmail.com">
-            <span class="contact-icon">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M2.5 6.5l9.5 7 9.5-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="contact-text">
-              <span class="label">E-mail (alternativo)</span>
-              <span class="value">leomar7deitos@gmail.com</span>
+              <span class="value">leomardeitos.dev@gmail.com</span>
             </span>
           </a>
         </div>
