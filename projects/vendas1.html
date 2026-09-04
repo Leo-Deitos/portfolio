@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vendas1 — Dashboard de Vendas | Leo Deitos</title>
+  <meta name="description" content="Estudo de caso do dashboard Vendas1: faturamento, margem bruta e performance da equipe comercial, modelado em SQL Server e servido no Power BI." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230e0b07%22/><path d=%22M15 70 L35 45 L55 58 L85 22%22 stroke=%22%23F5A623%22 stroke-width=%228%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/><circle cx=%2285%22 cy=%2222%22 r=%226%22 fill=%22%23F5A623%22/></svg>" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=2" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 16 L10 8 L14 13 L20 5" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-name">Leo Deitos</span>
+        <span class="brand-tagline">Dashboards &amp; Business Intelligence</span>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html#projetos">Projetos</a>
+        <a href="../index.html#sobre">Sobre</a>
+        <a href="../index.html#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="detail-hero">
+    <div class="container">
+      <a class="back-link" href="../index.html#projetos">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar aos projetos
+      </a>
+      <h1>Vendas1 — Dashboard de Vendas</h1>
+      <p class="subtitle">
+        Painel executivo de faturamento, margem bruta e performance da equipe comercial sobre
+        265 mil linhas de venda — de planilhas de origem a um banco SQL Server modelado em
+        estrela, consumido pelo Power BI.
+      </p>
+      <div class="meta-row">
+        <span class="tag">Power BI</span>
+        <span class="tag">SQL Server</span>
+        <span class="tag">HTML · JS</span>
+        <span class="tag tag-green">Vendas</span>
+        <span class="tag tag-purple">Dados fictícios</span>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="label">Faturamento no período</div>
+          <div class="value">R$ 40,8 mi</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Margem bruta</div>
+          <div class="value">75,1%</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Linhas de venda</div>
+          <div class="value">265.549</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Notas emitidas</div>
+          <div class="value">119.301</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-body-section">
+    <div class="container">
+      <div class="detail-body">
+        <div>
+          <h2>Sobre o painel</h2>
+          <p>
+            O Vendas1 responde três perguntas que a diretoria comercial faz toda segunda-feira:
+            quanto vendemos e como isso se compara ao ano anterior, onde a margem está sendo
+            construída ou destruída, e quem na equipe está puxando o resultado. A capa entrega a
+            leitura executiva em 10 segundos; a página de <strong>Performance</strong> abre o
+            comparativo mês a mês contra o mesmo período do ano passado; a
+            <strong>Decomposição</strong> permite abrir qualquer número por linha de produto,
+            fornecedor, vendedor e grupo, clicando para descer nível a nível; e
+            <strong>Metas</strong> compara o realizado de cada vendedor contra uma meta sintética.
+          </p>
+          <p>
+            Toda a transformação acontece no banco, não no Power Query. O pipeline parte das
+            planilhas de origem para um <strong>SQL Server</strong> em dois esquemas — <code>stg</code>
+            com os dados crus e <code>dw</code> com o modelo tratado, em estrela: uma fato de vendas
+            e três dimensões (produto, vendedor e calendário), mais a tabela de metas. Colunas
+            derivadas como custo e faturamento da venda são materializadas em SQL, com índices e
+            documentação nas próprias tabelas.
+          </p>
+          <p>
+            Uma decisão de modelagem vale o registro. A base de fotos de produto trazia itens que
+            nunca foram vendidos, o que no modelo original obrigava a um filtro cruzado bidirecional
+            entre a dimensão e a fato — solução que funciona, mas espalha ambiguidade pelo modelo e
+            cobra caro em performance. Aqui a dimensão de produto é construída a partir do
+            <code>DISTINCT</code> da própria fato, então o problema simplesmente não existe: todas as
+            relações são de mão única, do jeito que um esquema estrela deve ser.
+          </p>
+          <p>
+            Uma limitação vale o registro também. O relatório original no Power BI tem uma quarta
+            página com o visual nativo <strong>Key Influencers</strong> — um recurso de IA que roda
+            um algoritmo estatístico proprietário do motor do Power BI sobre a fato no grão de
+            linha. Esse visual não é portável para HTML/JS: não tem como reimplementar o algoritmo
+            sem reescrever um modelo estatístico inteiro, e a versão web abaixo trabalha sobre a
+            fato já agregada por mês, não por linha. Por isso a página <strong>Metas</strong> não
+            tenta clonar aquele visual — ela substitui por algo igualmente útil e honesto: realizado
+            vs. meta por vendedor, com o aviso de que a meta é sintética (derivada do faturamento do
+            mesmo mês do ano anterior) porque a base de origem não tem meta real.
+          </p>
+
+          <h2 style="margin-top: 36px;">Principais funcionalidades</h2>
+          <ul class="feature-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Cartões de faturamento, margem bruta e notas emitidas, cada um com o valor do ano anterior e a variação percentual em selo verde ou vermelho.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Filtro que troca a medida analisada em todos os visuais de uma vez — faturamento ou margem — sem duplicar página.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Comparativo mês a mês com o mesmo período do ano anterior, em colunas e linha tracejada sobreposta.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Árvore de decomposição clicável — abre faturamento ou margem por linha de produto, fornecedor e vendedor, nível a nível, com breadcrumb para voltar.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Ranking dos três primeiros vendedores com foto, e página de Metas com % de atingimento por vendedor.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tooltip com a foto do produto ao passar o mouse no gráfico por grupo, trazendo faturamento, custo e margem daquele item.
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Alternância entre tema claro e escuro, e dados servidos por SQL Server — modelo estrela versionado em T-SQL, com script de validação que confere contagens, somas e chaves órfãs a cada carga.
+            </li>
+          </ul>
+
+          <h2 style="margin-top: 36px;">Como foi construído</h2>
+          <p>
+            O modelo semântico tem <strong>45 medidas DAX</strong> organizadas numa tabela dedicada,
+            separando cálculos-base, comparativos com o ano anterior, acumulados no ano e as medidas
+            de apoio que alimentam formatação condicional. Os comparativos de período usam
+            <code>SAMEPERIODLASTYEAR</code> e <code>DATESYTD</code> sobre uma dimensão calendário
+            marcada como tabela de datas; o cruzamento com metas, que vivem em outra granularidade,
+            é resolvido com <code>TREATAS</code> em vez de um relacionamento muitos-para-muitos.
+          </p>
+          <p>
+            A versão web não é um print interativo: ela recebe a mesma fato agregada por
+            grupo × vendedor × mês do SQL Server, num JSON de ~130&nbsp;KB, e recalcula tudo — cartões,
+            gráficos e árvore de decomposição — no navegador a cada clique. Os números foram
+            conferidos casa decimal por casa decimal contra o relatório publicado: nenhuma
+            divergência nas páginas Capa, Performance e Decomposição.
+          </p>
+        </div>
+
+        <div class="side-card">
+          <h3>Ficha técnica</h3>
+          <ul class="side-list">
+            <li><span>Ferramenta</span><span>Power BI</span></li>
+            <li><span>Banco de dados</span><span>SQL Server</span></li>
+            <li><span>Modelo</span><span>Estrela — 1 fato, 3 dimensões</span></li>
+            <li><span>Medidas DAX</span><span>45</span></li>
+            <li><span>Linhas de venda</span><span>265.549</span></li>
+            <li><span>Período coberto</span><span>Jan/2025 – Dez/2026</span></li>
+            <li><span>Páginas</span><span>4 + tooltip</span></li>
+          </ul>
+          <p style="margin-top: 18px;">
+            <a class="project-card-link" href="vendas1-dashboard.html">
+              Abrir versão interativa
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </p>
+          <p style="margin-top: 10px;">
+            <a class="project-card-link project-card-link--ghost" href="https://github.com/Leo-Deitos/Vendas1" target="_blank" rel="noopener noreferrer">
+              Ver código-fonte
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Screenshots</div>
+        <h2>Todas as páginas — relatório Power BI</h2>
+        <p>Clique em uma imagem para ampliar.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Capa</h3>
+            <span>Leitura executiva e navegação para as análises</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Vendas1/01-capa.png" alt="Página de capa do dashboard Vendas1" loading="lazy" />
+        </figure>
+
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Performance</h3>
+            <span>Cartões vs. ano anterior, série mensal e top vendedores</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Vendas1/02-performance.png" alt="Página de performance do dashboard Vendas1" loading="lazy" />
+        </figure>
+
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Decomposição</h3>
+            <span>Árvore por linha, fornecedor, vendedor e grupo</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Vendas1/03-decomposicao.png" alt="Página de decomposição do dashboard Vendas1" loading="lazy" />
+        </figure>
+
+        <figure class="gallery-item">
+          <div class="gallery-item-caption">
+            <h3>Influenciadores (Key Results)</h3>
+            <span>Visual nativo de IA do Power BI — não replicado na versão web, ver nota acima</span>
+          </div>
+          <img data-lightbox-trigger src="../assets/screenshots/Vendas1/04-key-results.png" alt="Página de influenciadores do dashboard Vendas1" loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Leo Deitos. Todos os direitos reservados.</span>
+      <a href="../index.html#projetos">← Voltar ao portfólio</a>
+    </div>
+  </footer>
+
+  <div class="lightbox" data-lightbox>
+    <button class="lightbox-close" data-lightbox-close aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <img src="" alt="" />
+  </div>
+
+  <script src="../assets/js/main.js?v=2"></script>
+</body>
+</html>
