@@ -1,0 +1,278 @@
+/* Gerado a partir de data/conteudo.json — nao editar a mao.
+   Serve de fallback quando o index.html e aberto direto do disco (file://),
+   onde o fetch do JSON e bloqueado pelo navegador.
+   O admin republica este arquivo junto com o JSON. */
+window.CONTEUDO_PADRAO = {
+  "versao": 1,
+  "atualizadoEm": "2026-09-12",
+  "site": {
+    "titulo": "Leomar Deitos — Analista de Dados e Especialista em Power BI",
+    "descricao": "Especialista em Power BI. Dashboards interativos e automatizados para Financeiro, Logística, RH, Vendas e Contábil.",
+    "logo": "assets/img/logo.png",
+    "nomeMenu": "Leomar Deitos"
+  },
+  "hero": {
+    "nomeDestaque": "Leomar",
+    "nomeResto": "Deitos",
+    "rotulo": "Analista de Dados · Analytics Engineer",
+    "subtitulo": "Especialista em Power BI. Desenvolvo dashboards interativos e automatizados para diferentes áreas de negócio.",
+    "botaoTexto": "Sobre mim",
+    "botaoHref": "#sobre-mim",
+    "botaoSecundarioTexto": "Ver projetos",
+    "botaoSecundarioHref": "#projetos",
+    "foto": "assets/img/perfil.jpg",
+    "fotoAlt": "Foto de Leomar Deitos"
+  },
+  "sobre": {
+    "titulo": "Sobre mim:",
+    "numero": "5+",
+    "numeroLegenda": "anos dentro da operação, não só do relatório",
+    "texto": "5+ anos na rotina de armazenagem e logística, Financeiro, Contábil, RH e Vendas — hoje construo os painéis e automações que essa mesma operação precisa pra enxergar o que os sistemas não mostram.",
+    "textoComplementar": "Conheço o dado onde ele nasce: no apontamento errado, no lançamento em duplicidade, no cadastro que ninguém mantém. Por isso meu trabalho começa validando granularidade, nulos e duplicatas — e só depois vira gráfico. Painel bonito com número errado é prejuízo com boa apresentação."
+  },
+  "habilidades": {
+    "titulo": "Principais habilidades:",
+    "itens": [
+      {
+        "icone": "analise",
+        "titulo": "Visualização e Análise de Dados",
+        "texto": "Modelagem estrela, DAX e SQL com validação antes da conclusão: granularidade declarada, duplicatas conferidas e soma de controle fechando com a base."
+      },
+      {
+        "icone": "design",
+        "titulo": "Design de Dashboards",
+        "texto": "Layout que guia a leitura: hierarquia visual, cor com propósito e visuais customizados (HTML, SVG, Deneb) quando o nativo não entrega a mensagem."
+      },
+      {
+        "icone": "projetos",
+        "titulo": "Gestão de Projetos",
+        "texto": "Do levantamento de requisitos à publicação: escopo acordado com a área, indicadores documentados, versionamento e entrega com dicionário de medidas."
+      },
+      {
+        "icone": "logistica",
+        "titulo": "Armazenagem e Logística",
+        "texto": "Vivência de chão de operação: OTIF, lead time, custo por pedido, ruptura e inventário. Sei onde o indicador costuma mentir e por quê."
+      }
+    ]
+  },
+  "projetos": {
+    "titulo": "Explore alguns projetos que já desenvolvi:",
+    "subtitulo": "Painéis publicados no Power BI Service e réplicas interativas em HTML. Clique em Ver detalhes para abrir o relatório.",
+    "itens": [
+      {
+        "id": "dfc",
+        "titulo": "Dashboard_DFC",
+        "tipo": "powerbi",
+        "area": "Financeiro",
+        "descricao": "Demonstração de Fluxo de Caixa completa: entradas, saídas e saldo operacional por mês, com saldo acumulado, concentração de caixa por banco e abertura de entradas e saídas por subgrupo. Inclui tratamento explícito de mês parcial, que é excluído das médias e tendências.",
+        "indicadores": [
+          "Entradas x Saídas",
+          "Saldo operacional",
+          "Saldo acumulado",
+          "Runway em meses de caixa",
+          "Saldo por banco"
+        ],
+        "imagem": "assets/projetos/Dashboard_DFC.png",
+        "link": "https://app.powerbi.com/view?r=eyJrIjoiNjIwMzY1MjQtYzhmZS00YWQ3LWE4NzUtMTExNGU2OTcwMmRmIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "logistica1",
+        "titulo": "Logística1",
+        "tipo": "powerbi",
+        "area": "Logística",
+        "descricao": "Centro de decisão de performance logística e nível de serviço. Acompanha OTIF sobre a base elegível, custo logístico por pedido, lead time médio e emissões estimadas de CO₂, com leitura executiva automática apontando a transportadora e a região que puxam o serviço para baixo.",
+        "indicadores": [
+          "OTIF",
+          "Custo por pedido",
+          "Lead time",
+          "Atraso médio",
+          "Emissões de CO₂"
+        ],
+        "imagem": "assets/projetos/Logistica1.png",
+        "link": "https://app.powerbi.com/view?r=eyJrIjoiYWUzMDJlNGMtY2U0NC00ZTBmLTk1YzctMGE3ZDg3MTgzMzEyIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "rh1",
+        "titulo": "RH1-dashboard",
+        "tipo": "powerbi",
+        "area": "Recursos Humanos",
+        "descricao": "Painel de gente e gestão com navegação por indicador: contratações, demissões, headcount, massa salarial e turnover no mesmo layout. Traz o recorte de má contratação (saída precoce) e abertura por escolaridade, cargo, faixa etária e gênero.",
+        "indicadores": [
+          "% Turnover",
+          "Headcount",
+          "Massa salarial",
+          "Má contratação",
+          "Contratações x Demissões"
+        ],
+        "imagem": "assets/projetos/RH1-dashboard.png",
+        "link": "https://app.powerbi.com/view?r=eyJrIjoiMDhjNWZjZTEtOTRlYi00NDNiLTg2M2MtMTFhZGE3NzcyN2NkIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "simulador",
+        "titulo": "Fluxo de Caixa Simulador Financeiro",
+        "tipo": "powerbi",
+        "area": "Financeiro",
+        "descricao": "Fluxo de caixa com camada de simulação: além do realizado de receitas, despesas fixas e variáveis, permite testar cenários de corte e de aumento de receita e ver o impacto no saldo acumulado mês a mês. Navegação em três telas — Visão Geral, Detalhes e Simulador.",
+        "indicadores": [
+          "Receitas",
+          "Despesas fixas x variáveis",
+          "Saldo acumulado",
+          "Simulação de cenários"
+        ],
+        "imagem": "assets/projetos/Fluxo-de-Caixa-Simulador-Financeiro.png",
+        "link": "https://app.powerbi.com/view?r=eyJrIjoiOGQyZjcyZmYtNzEzYy00ZmU2LWFkY2QtNWRmMDIzZmFmZmM5IiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "vendas1",
+        "titulo": "Vendas1",
+        "tipo": "powerbi",
+        "area": "Comercial",
+        "descricao": "Performance da equipe comercial com comparativo contra o ano anterior: faturamento, margem bruta e notas emitidas, decomposição por fornecedor, equipe de vendas e linha de produto. Modelo sobre SQL Server com fato de 265 mil linhas.",
+        "indicadores": [
+          "Faturamento",
+          "Margem de contribuição",
+          "% MC",
+          "Variação vs ano anterior",
+          "Receita por equipe"
+        ],
+        "imagem": "assets/projetos/Vendas1.png",
+        "link": "https://app.powerbi.com/view?r=eyJrIjoiZTQ2MjVkNTgtYjVmYy00NDIwLThiMjItNjYwN2M3OWQ0MDNhIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "financas2024",
+        "titulo": "Finanças Pessoais 2024",
+        "tipo": "powerbi",
+        "area": "Financeiro",
+        "descricao": "Controle de finanças pessoais do ano: receitas contra despesas fixas e variáveis, saldo mensal e acumulado, e ranking de gastos por grupo de conta. Filtros por ano, mês, tipo de conta e descrição para chegar no lançamento individual.",
+        "indicadores": [
+          "Receitas",
+          "Despesas fixas",
+          "Despesas variáveis",
+          "Saldo acumulado",
+          "Gasto por grupo"
+        ],
+        "imagem": "assets/projetos/Financas-Pessoais-2024.png",
+        "link": "https://app.powerbi.com/view?r=eyJrIjoiOGJlZDVhYTUtODk0NC00Njc0LTg5NjAtOTY1NGM2OTlmMTgwIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "logistica1-html",
+        "titulo": "Logística1 — réplica em HTML",
+        "tipo": "html",
+        "area": "Logística",
+        "descricao": "Reconstrução do painel de logística em HTML, CSS e JavaScript puro, sem licença de BI e sem serviço externo: roda direto no navegador. Mantém os mesmos indicadores e filtros do relatório original.",
+        "indicadores": [
+          "OTIF",
+          "Lead time",
+          "Filtros no navegador",
+          "Sem licença de BI"
+        ],
+        "imagem": "",
+        "link": "projects/logistica1-dashboard.html",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "rh1-html",
+        "titulo": "RH1 — réplica em HTML",
+        "tipo": "html",
+        "area": "Recursos Humanos",
+        "descricao": "Painel de RH reconstruído em HTML e JavaScript, com a navegação por indicador do original. Útil quando o destinatário não tem acesso ao Power BI Service.",
+        "indicadores": [
+          "Turnover",
+          "Headcount",
+          "Massa salarial",
+          "Sem licença de BI"
+        ],
+        "imagem": "",
+        "link": "projects/rh1-dashboard.html",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "vendas1-html",
+        "titulo": "Vendas1 — réplica em HTML",
+        "tipo": "html",
+        "area": "Comercial",
+        "descricao": "Réplica interativa do painel comercial em HTML e JavaScript, com as telas de performance, decomposição e key results acessíveis por qualquer navegador.",
+        "indicadores": [
+          "Faturamento",
+          "Margem bruta",
+          "Comparativo anual",
+          "Sem licença de BI"
+        ],
+        "imagem": "",
+        "link": "projects/vendas1-dashboard.html",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      }
+    ]
+  },
+  "ajuda": {
+    "titulo": "Como posso te ajudar:",
+    "itens": [
+      {
+        "icone": "planilha",
+        "titulo": "Automação de planilhas (Excel ou Google Sheets)",
+        "texto": "Fim do relatório montado na mão toda segunda-feira. Consolido as bases, trato os erros de cadastro na origem e monto a rotina com Power Query, fórmulas ou script. O que levava meia manhã passa a levar um clique — e para de depender de quem sabe o passo a passo."
+      },
+      {
+        "icone": "dashboard",
+        "titulo": "Desenvolvimento de Dashboards",
+        "texto": "Painel publicado com atualização automática, filtros que a área realmente usa e indicador que responde pergunta de gestão, não só mostra número. Entrego com o dicionário de medidas: cada KPI documentado, com a regra de cálculo que foi acordada."
+      }
+    ]
+  },
+  "contato": {
+    "titulo": "Entre em contato comigo:",
+    "subtitulo": "Aberto a projetos, freelas e conversas sobre dados.",
+    "itens": [
+      {
+        "icone": "site",
+        "rotulo": "Site",
+        "valor": "Está em desenvolvimento",
+        "href": "",
+        "ativo": false
+      },
+      {
+        "icone": "email",
+        "rotulo": "E-mail",
+        "valor": "leomardeitos.dev@gmail.com",
+        "href": "mailto:leomardeitos.dev@gmail.com",
+        "ativo": true
+      },
+      {
+        "icone": "linkedin",
+        "rotulo": "LinkedIn",
+        "valor": "/in/leomar-deitos",
+        "href": "https://www.linkedin.com/in/leomar-deitos",
+        "ativo": true
+      }
+    ]
+  },
+  "rodape": {
+    "texto": "Leomar Deitos · Analista de Dados",
+    "nota": "Os painéis são demonstrações com dados fictícios ou anonimizados."
+  }
+}
+;

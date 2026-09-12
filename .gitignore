@@ -11,3 +11,12 @@ Thumbs.db
 
 # Claude Code local settings (machine-specific, not portfolio content)
 .claude/settings.local.json
+
+# editores
+.vscode/
+.idea/
+
+# temporarios
+*.tmp
+*.bak
+desktop.ini

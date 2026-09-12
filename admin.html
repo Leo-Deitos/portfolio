@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel de edição — Portfólio Leomar Deitos</title>
+<link rel="icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#1C1B19; --bg-alt:#171614; --card:#23221F; --card-2:#2A2825;
+  --linha:#35332E; --linha-forte:#6B665B;
+  --txt:#F2F0EC; --txt-2:#BFBBB2; --txt-3:#8C877D;
+  --verde:#5F8575; --verde-claro:#8FB3A3; --verde-tinta:#0B1410;
+  --erro:#E0736A; --alerta:#D9A441;
+  --raio:12px; --fonte:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--fonte);font-size:15px;line-height:1.6}
+a{color:var(--verde-claro)}
+:focus-visible{outline:2px solid var(--verde-claro);outline-offset:2px;border-radius:4px}
+
+/* topo */
+.painel-topo{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:12px 20px;background:rgba(23,22,20,.96);border-bottom:1px solid var(--linha);backdrop-filter:blur(10px)}
+.painel-topo img{height:26px}
+.painel-topo h1{margin:0;font-size:1rem;font-weight:700;letter-spacing:-.01em}
+.painel-topo .espaco{flex:1}
+.estado{font-size:.82rem;color:var(--txt-3);display:flex;align-items:center;gap:7px}
+.ponto{width:8px;height:8px;border-radius:50%;background:var(--txt-3)}
+.ponto.ok{background:var(--verde)} .ponto.erro{background:var(--erro)} .ponto.pend{background:var(--alerta)}
+
+/* layout */
+.layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:0;min-height:calc(100vh - 57px)}
+.abas{border-right:1px solid var(--linha);background:var(--bg-alt);padding:16px 12px;display:flex;flex-direction:column;gap:3px}
+.abas button{display:block;width:100%;text-align:left;background:transparent;border:0;color:var(--txt-2);
+  padding:10px 13px;border-radius:9px;cursor:pointer;font:inherit;font-size:.92rem}
+.abas button:hover{background:#ffffff0d;color:var(--txt)}
+.abas button.ativa{background:rgba(95,133,117,.16);color:var(--verde-claro);font-weight:600}
+.conteudo{padding:26px 28px 90px;max-width:960px}
+.painel{display:none} .painel.ativo{display:block}
+
+h2.secao-titulo{margin:0 0 6px;font-size:1.3rem;letter-spacing:-.02em}
+p.secao-ajuda{margin:0 0 22px;color:var(--txt-2);font-size:.92rem;max-width:72ch}
+
+/* campos */
+.campo{margin-bottom:16px}
+.campo label{display:block;font-size:.82rem;font-weight:600;color:var(--txt-2);margin-bottom:6px;letter-spacing:.01em}
+.campo .dica{font-weight:400;color:var(--txt-3);font-size:.78rem}
+input[type=text],input[type=url],input[type=password],textarea,select{
+  width:100%;background:#1A1917;border:1px solid var(--linha-forte);color:var(--txt);
+  border-radius:9px;padding:10px 12px;font:inherit;font-size:.92rem}
+textarea{min-height:92px;resize:vertical;line-height:1.6}
+input:focus,textarea:focus,select:focus{border-color:var(--verde);outline:none}
+.linha{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.check{display:flex;align-items:center;gap:9px;font-size:.9rem;color:var(--txt-2);margin-bottom:10px}
+.check input{width:17px;height:17px;accent-color:var(--verde)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:9px;
+  padding:10px 17px;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;border:1px solid transparent;text-decoration:none}
+.btn-primario{background:var(--verde);color:var(--verde-tinta);border-color:var(--verde)}
+.btn-primario:hover{background:#6F9785}
+.btn-sec{background:#ffffff0a;color:var(--txt);border-color:var(--linha-forte)}
+.btn-sec:hover{border-color:var(--verde);color:var(--verde-claro)}
+.btn-perigo{background:transparent;color:var(--erro);border-color:#5a3330}
+.btn-perigo:hover{background:#e0736a14}
+.btn-mini{padding:5px 10px;font-size:.8rem;border-radius:7px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* blocos de item (listas) */
+.item{border:1px solid var(--linha);background:var(--card);border-radius:var(--raio);padding:18px;margin-bottom:14px}
+.item__topo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.item__nome{font-weight:650;flex:1;font-size:.96rem}
+.item__ordem{display:flex;gap:5px}
+
+/* preview de imagem */
+.img-campo{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.img-previa{width:150px;aspect-ratio:16/9;object-fit:cover;border-radius:9px;border:1px solid var(--linha-forte);background:#111}
+.img-previa.redonda{aspect-ratio:1;width:84px;border-radius:50%}
+.img-acoes{flex:1;min-width:230px;display:flex;flex-direction:column;gap:8px}
+input[type=file]{font-size:.85rem;color:var(--txt-2)}
+input[type=file]::file-selector-button{background:#ffffff0a;color:var(--txt);border:1px solid var(--linha-forte);
+  border-radius:7px;padding:7px 12px;margin-right:10px;cursor:pointer;font:inherit;font-size:.85rem}
+
+/* barra de ações fixa */
+.barra-acoes{position:fixed;bottom:0;left:0;right:0;z-index:30;display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  padding:12px 20px;background:rgba(23,22,20,.97);border-top:1px solid var(--linha);backdrop-filter:blur(10px)}
+.barra-acoes .espaco{flex:1}
+.log{font-size:.84rem;color:var(--txt-2)}
+.log.ok{color:var(--verde-claro)} .log.erro{color:var(--erro)}
+
+.aviso{border:1px solid var(--linha-forte);background:#ffffff07;border-left:3px solid var(--alerta);
+  border-radius:9px;padding:14px 16px;margin-bottom:20px;font-size:.88rem;color:var(--txt-2)}
+.aviso strong{color:var(--txt)}
+.aviso.verde{border-left-color:var(--verde)}
+code{background:#00000055;padding:2px 6px;border-radius:5px;font-size:.86em;color:var(--verde-claro)}
+
+@media (max-width:780px){
+  .layout{grid-template-columns:1fr}
+  .abas{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--linha);padding:10px}
+  .abas button{white-space:nowrap;width:auto}
+  .conteudo{padding:20px 16px 120px}
+  .linha{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="painel-topo">
+  <img src="assets/img/logo.png" alt="">
+  <h1>Painel de edição</h1>
+  <span class="estado"><span class="ponto" id="ponto-conexao"></span><span id="txt-conexao">sem conexão</span></span>
+  <span class="espaco"></span>
+  <a class="btn btn-sec" href="index.html" target="_blank" rel="noopener">Abrir site</a>
+</header>
+
+<div class="layout">
+  <nav class="abas" id="abas" aria-label="Seções do painel"></nav>
+  <div class="conteudo" id="conteudo"></div>
+</div>
+
+<div class="barra-acoes">
+  <button class="btn btn-sec" id="btn-recarregar" type="button">Recarregar</button>
+  <button class="btn btn-sec" id="btn-previa" type="button">Pré-visualizar</button>
+  <button class="btn btn-sec" id="btn-baixar" type="button">Baixar JSON</button>
+  <label class="btn btn-sec" for="importar-json" style="margin:0">Importar JSON</label>
+  <input type="file" id="importar-json" accept="application/json,.json" hidden>
+  <span class="espaco"></span>
+  <span class="log" id="log"></span>
+  <button class="btn btn-primario" id="btn-publicar" type="button">Publicar no site</button>
+</div>
+
+<script src="assets/js/conteudo-padrao.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>
