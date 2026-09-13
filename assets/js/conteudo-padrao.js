@@ -57,7 +57,7 @@ window.CONTEUDO_PADRAO = {
   },
   "projetos": {
     "titulo": "Explore alguns projetos que já desenvolvi:",
-    "subtitulo": "Painéis publicados no Power BI Service e réplicas interativas em HTML. Clique em Ver detalhes para abrir o relatório.",
+    "subtitulo": "Painéis publicados no Power BI Service. Clique em Ver detalhes para abrir o relatório interativo.",
     "itens": [
       {
         "id": "dfc",
@@ -168,60 +168,6 @@ window.CONTEUDO_PADRAO = {
         ],
         "imagem": "",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiOGJlZDVhYTUtODk0NC00Njc0LTg5NjAtOTY1NGM2OTlmMTgwIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
-        "botao": "Ver detalhes",
-        "embed": true,
-        "visivel": true
-      },
-      {
-        "id": "logistica1-html",
-        "titulo": "Logística1 — réplica em HTML",
-        "tipo": "html",
-        "area": "Logística",
-        "descricao": "Reconstrução do painel de logística em HTML, CSS e JavaScript puro, sem licença de BI e sem serviço externo: roda direto no navegador. Mantém os mesmos indicadores e filtros do relatório original.",
-        "indicadores": [
-          "OTIF",
-          "Lead time",
-          "Filtros no navegador",
-          "Sem licença de BI"
-        ],
-        "imagem": "assets/projetos/Logistica1.webp",
-        "link": "projects/logistica1-dashboard.html",
-        "botao": "Ver detalhes",
-        "embed": true,
-        "visivel": true
-      },
-      {
-        "id": "rh1-html",
-        "titulo": "RH1 — réplica em HTML",
-        "tipo": "html",
-        "area": "Recursos Humanos",
-        "descricao": "Painel de RH reconstruído em HTML e JavaScript, com a navegação por indicador do original. Útil quando o destinatário não tem acesso ao Power BI Service.",
-        "indicadores": [
-          "Turnover",
-          "Headcount",
-          "Massa salarial",
-          "Sem licença de BI"
-        ],
-        "imagem": "assets/projetos/RH1-dashboard.webp",
-        "link": "projects/rh1-dashboard.html",
-        "botao": "Ver detalhes",
-        "embed": true,
-        "visivel": true
-      },
-      {
-        "id": "vendas1-html",
-        "titulo": "Vendas1 — réplica em HTML",
-        "tipo": "html",
-        "area": "Comercial",
-        "descricao": "Réplica interativa do painel comercial em HTML e JavaScript, com as telas de performance, decomposição e key results acessíveis por qualquer navegador.",
-        "indicadores": [
-          "Faturamento",
-          "Margem bruta",
-          "Comparativo anual",
-          "Sem licença de BI"
-        ],
-        "imagem": "assets/projetos/Vendas1.webp",
-        "link": "projects/vendas1-dashboard.html",
         "botao": "Ver detalhes",
         "embed": true,
         "visivel": true
