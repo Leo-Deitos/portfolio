@@ -72,7 +72,7 @@ window.CONTEUDO_PADRAO = {
           "Runway em meses de caixa",
           "Saldo por banco"
         ],
-        "imagem": "assets/projetos/Dashboard_DFC.png",
+        "imagem": "",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiNjIwMzY1MjQtYzhmZS00YWQ3LWE4NzUtMTExNGU2OTcwMmRmIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
         "botao": "Ver detalhes",
         "embed": true,
@@ -91,7 +91,7 @@ window.CONTEUDO_PADRAO = {
           "Atraso médio",
           "Emissões de CO₂"
         ],
-        "imagem": "assets/projetos/Logistica1.png",
+        "imagem": "assets/projetos/Logistica1.webp",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiYWUzMDJlNGMtY2U0NC00ZTBmLTk1YzctMGE3ZDg3MTgzMzEyIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
         "botao": "Ver detalhes",
         "embed": true,
@@ -110,7 +110,7 @@ window.CONTEUDO_PADRAO = {
           "Má contratação",
           "Contratações x Demissões"
         ],
-        "imagem": "assets/projetos/RH1-dashboard.png",
+        "imagem": "assets/projetos/RH1-dashboard.webp",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiMDhjNWZjZTEtOTRlYi00NDNiLTg2M2MtMTFhZGE3NzcyN2NkIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
         "botao": "Ver detalhes",
         "embed": true,
@@ -128,7 +128,7 @@ window.CONTEUDO_PADRAO = {
           "Saldo acumulado",
           "Simulação de cenários"
         ],
-        "imagem": "assets/projetos/Fluxo-de-Caixa-Simulador-Financeiro.png",
+        "imagem": "",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiOGQyZjcyZmYtNzEzYy00ZmU2LWFkY2QtNWRmMDIzZmFmZmM5IiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
         "botao": "Ver detalhes",
         "embed": true,
@@ -147,7 +147,7 @@ window.CONTEUDO_PADRAO = {
           "Variação vs ano anterior",
           "Receita por equipe"
         ],
-        "imagem": "assets/projetos/Vendas1.png",
+        "imagem": "assets/projetos/Vendas1.webp",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiZTQ2MjVkNTgtYjVmYy00NDIwLThiMjItNjYwN2M3OWQ0MDNhIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
         "botao": "Ver detalhes",
         "embed": true,
@@ -166,7 +166,7 @@ window.CONTEUDO_PADRAO = {
           "Saldo acumulado",
           "Gasto por grupo"
         ],
-        "imagem": "assets/projetos/Financas-Pessoais-2024.png",
+        "imagem": "",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiOGJlZDVhYTUtODk0NC00Njc0LTg5NjAtOTY1NGM2OTlmMTgwIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
         "botao": "Ver detalhes",
         "embed": true,
@@ -184,7 +184,7 @@ window.CONTEUDO_PADRAO = {
           "Filtros no navegador",
           "Sem licença de BI"
         ],
-        "imagem": "",
+        "imagem": "assets/projetos/Logistica1.webp",
         "link": "projects/logistica1-dashboard.html",
         "botao": "Ver detalhes",
         "embed": true,
@@ -202,7 +202,7 @@ window.CONTEUDO_PADRAO = {
           "Massa salarial",
           "Sem licença de BI"
         ],
-        "imagem": "",
+        "imagem": "assets/projetos/RH1-dashboard.webp",
         "link": "projects/rh1-dashboard.html",
         "botao": "Ver detalhes",
         "embed": true,
@@ -220,7 +220,7 @@ window.CONTEUDO_PADRAO = {
           "Comparativo anual",
           "Sem licença de BI"
         ],
-        "imagem": "",
+        "imagem": "assets/projetos/Vendas1.webp",
         "link": "projects/vendas1-dashboard.html",
         "botao": "Ver detalhes",
         "embed": true,

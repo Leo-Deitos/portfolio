@@ -22,7 +22,8 @@
 
   var estado = {
     dados: null,
-    conexao: { owner: "", repo: "", branch: "main", token: "" },
+    // pre-preenchido para este repositorio; so falta o token do dono
+    conexao: { owner: "Leo-Deitos", repo: "portfolio", branch: "master", token: "" },
     aba: "conexao",
     sujo: false
   };
@@ -324,11 +325,11 @@
       'Não abra este painel em computador compartilhado.</div>' +
 
       '<div class="linha">' +
-        '<div class="campo"><label>Usuário ou organização</label><input type="text" id="cx-owner" value="' + esc(c.owner) + '" placeholder="leomardeitos"></div>' +
+        '<div class="campo"><label>Usuário ou organização</label><input type="text" id="cx-owner" value="' + esc(c.owner) + '" placeholder="Leo-Deitos"></div>' +
         '<div class="campo"><label>Repositório</label><input type="text" id="cx-repo" value="' + esc(c.repo) + '" placeholder="portfolio"></div>' +
       "</div>" +
       '<div class="linha">' +
-        '<div class="campo"><label>Branch</label><input type="text" id="cx-branch" value="' + esc(c.branch || "main") + '" placeholder="main"></div>' +
+        '<div class="campo"><label>Branch</label><input type="text" id="cx-branch" value="' + esc(c.branch || "master") + '" placeholder="main"></div>' +
         '<div class="campo"><label>Token <span class="dica">— github_pat_...</span></label><input type="password" id="cx-token" value="' + esc(c.token) + '" autocomplete="off"></div>' +
       "</div>" +
       '<div style="display:flex;gap:10px;flex-wrap:wrap">' +
