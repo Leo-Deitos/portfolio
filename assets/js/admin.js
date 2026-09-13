@@ -512,12 +512,15 @@
     }).join("");
   }
 
-  function renderizarAba() {
+  function renderizarAba(manterPosicao) {
+    var y = window.scrollY;
     montarAbas();
     var fn = RENDER[estado.aba];
     $("#conteudo").innerHTML = fn ? fn() : "";
     if (estado.aba === "conexao") ligarConexao();
-    window.scrollTo(0, 0);
+    // so a troca de aba volta ao topo; upload e edicao de lista mantem o lugar,
+    // senao o usuario perde de vista o card em que estava mexendo
+    window.scrollTo(0, manterPosicao ? y : 0);
   }
 
   function atualizarEstadoConexao() {
@@ -645,7 +648,7 @@
           break;
       }
       marcarSujo();
-      renderizarAba();
+      renderizarAba(true);
     });
 
     // upload de imagem
@@ -661,11 +664,15 @@
       enviarImagem(input.files[0], pasta, nome, largura)
         .then(function (r) {
           definir(estado.dados, caminho, r.caminho);
+          // nome do card, para o aviso deixar claro onde a capa foi aplicada
+          var partes = caminho.split("."); partes.pop();
+          var dono = pegar(estado.dados, partes.join(".")) || {};
+          var onde = dono.titulo ? ' em "' + dono.titulo + '"' : "";
           marcarSujo();
-          renderizarAba();
+          renderizarAba(true);
           log(r.embutida
-            ? "Imagem embutida no conteúdo (" + r.kb + " KB). Configure a Conexão para gravá-la como arquivo."
-            : "Imagem publicada: " + r.caminho + " (" + r.kb + " KB).", "ok");
+            ? "Imagem embutida no conteúdo" + onde + " (" + r.kb + " KB). Configure a Conexão para gravá-la como arquivo."
+            : "Capa" + onde + " publicada: " + r.caminho + " (" + r.kb + " KB).", "ok");
         })
         .catch(function (err) { log("Falha no envio: " + err.message, "erro"); });
     });

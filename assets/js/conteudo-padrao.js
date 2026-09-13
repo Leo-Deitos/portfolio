@@ -61,7 +61,7 @@ window.CONTEUDO_PADRAO = {
     "itens": [
       {
         "id": "dfc",
-        "titulo": "Fluxo de Caixa Simulador Financeiro",
+        "titulo": "Dashboard_DFC",
         "tipo": "powerbi",
         "area": "Financeiro",
         "descricao": "Demonstração de Fluxo de Caixa completa: entradas, saídas e saldo operacional por mês, com saldo acumulado, concentração de caixa por banco e abertura de entradas e saídas por subgrupo. Inclui tratamento explícito de mês parcial, que é excluído das médias e tendências.",
@@ -72,7 +72,7 @@ window.CONTEUDO_PADRAO = {
           "Runway em meses de caixa",
           "Saldo por banco"
         ],
-        "imagem": "assets/projetos/Financas-Pessoais-2024.webp",
+        "imagem": "",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiNjIwMzY1MjQtYzhmZS00YWQ3LWE4NzUtMTExNGU2OTcwMmRmIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
         "botao": "Ver detalhes",
         "embed": true,
@@ -128,7 +128,7 @@ window.CONTEUDO_PADRAO = {
           "Saldo acumulado",
           "Simulação de cenários"
         ],
-        "imagem": "",
+        "imagem": "assets/projetos/Fluxo-de-Caixa-Simulador-Financeiro.webp",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiOGQyZjcyZmYtNzEzYy00ZmU2LWFkY2QtNWRmMDIzZmFmZmM5IiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
         "botao": "Ver detalhes",
         "embed": true,
@@ -274,4 +274,5 @@ window.CONTEUDO_PADRAO = {
     "texto": "Leomar Deitos · Analista de Dados",
     "nota": "Os painéis são demonstrações com dados fictícios ou anonimizados."
   }
-};
+}
+;
