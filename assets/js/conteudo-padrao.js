@@ -4,7 +4,7 @@
    O admin republica este arquivo junto com o JSON. */
 window.CONTEUDO_PADRAO = {
   "versao": 1,
-  "atualizadoEm": "2026-09-12",
+  "atualizadoEm": "2026-09-13",
   "site": {
     "titulo": "Leomar Deitos — Analista de Dados e Especialista em Power BI",
     "descricao": "Especialista em Power BI. Dashboards interativos e automatizados para Financeiro, Logística, RH, Vendas e Contábil.",
@@ -20,7 +20,7 @@ window.CONTEUDO_PADRAO = {
     "botaoHref": "#sobre-mim",
     "botaoSecundarioTexto": "Ver projetos",
     "botaoSecundarioHref": "#projetos",
-    "foto": "assets/img/perfil.jpg",
+    "foto": "assets/img/perfil.webp",
     "fotoAlt": "Foto de Leomar Deitos"
   },
   "sobre": {
@@ -72,7 +72,7 @@ window.CONTEUDO_PADRAO = {
           "Runway em meses de caixa",
           "Saldo por banco"
         ],
-        "imagem": "",
+        "imagem": "assets/projetos/Dashboard_DFC.webp",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiNjIwMzY1MjQtYzhmZS00YWQ3LWE4NzUtMTExNGU2OTcwMmRmIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
         "botao": "Ver detalhes",
         "embed": true,
@@ -274,5 +274,4 @@ window.CONTEUDO_PADRAO = {
     "texto": "Leomar Deitos · Analista de Dados",
     "nota": "Os painéis são demonstrações com dados fictícios ou anonimizados."
   }
-}
-;
+};
