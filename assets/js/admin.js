@@ -116,7 +116,7 @@
 
   function mensagemErro(resposta) {
     if (resposta.status === 401) return "Token inválido ou expirado (401).";
-    if (resposta.status === 403) return "Sem permissão (403). O token precisa de Contents: Read and write neste repositório.";
+    if (resposta.status === 403) return "Sem permissão para gravar (403). No token, confira: Repository access inclui este repositório, e Permissions > Contents esta em 'Read and write' (nao 'Read-only'). Use o botao Testar conexao para diagnosticar.";
     if (resposta.status === 404) return "Não encontrado (404). Confira usuário, repositório e branch.";
     if (resposta.status === 409) return "Conflito (409). O arquivo mudou no repositório — clique em Recarregar e refaça a edição.";
     if (resposta.status === 422) return "Requisição recusada (422). Normalmente é branch inexistente.";
@@ -547,10 +547,28 @@
     $("#btn-testar").addEventListener("click", function () {
       if (!conexaoOk()) { log("Preencha usuário, repositório e token antes de testar.", "erro"); return; }
       log("Testando...");
-      ghObter(CAMINHO_JSON)
+
+      /* Ler não prova nada: repositório público é legível por qualquer token.
+         O que importa é permissions.push — se for falso, o Publicar vai falhar com 403. */
+      var c = estado.conexao;
+      fetch("https://api.github.com/repos/" + encodeURIComponent(c.owner) + "/" + encodeURIComponent(c.repo),
+            { headers: ghCabecalhos(), cache: "no-store" })
         .then(function (r) {
-          log(r ? "Conexão OK — conteudo.json encontrado no repositório." :
-                  "Conexão OK — o arquivo data/conteudo.json ainda não existe lá; será criado ao publicar.", "ok");
+          if (!r.ok) throw new Error(mensagemErro(r));
+          return r.json();
+        })
+        .then(function (repo) {
+          if (!repo.permissions || !repo.permissions.push) {
+            throw new Error("O token LÊ este repositório mas NÃO pode gravar. " +
+              "Abra o token no GitHub e confira duas coisas: " +
+              "(1) Repository access inclui " + c.owner + "/" + c.repo + "; " +
+              "(2) Permissions → Contents está em 'Read and write', não 'Read-only'.");
+          }
+          return ghObter(CAMINHO_JSON);   // confirma também que a branch existe
+        })
+        .then(function (r) {
+          log(r ? "Conexão OK — leitura e escrita liberadas, conteudo.json encontrado."
+                : "Conexão OK — escrita liberada; data/conteudo.json será criado ao publicar.", "ok");
         })
         .catch(function (e) { log(e.message, "erro"); });
     });
