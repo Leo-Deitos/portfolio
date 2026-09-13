@@ -57,7 +57,7 @@
     "itens": [
       {
         "id": "dfc",
-        "titulo": "Finanças Pessoais 2024",
+        "titulo": "Fluxo de Caixa Simulador Financeiro",
         "tipo": "powerbi",
         "area": "Financeiro",
         "descricao": "Demonstração de Fluxo de Caixa completa: entradas, saídas e saldo operacional por mês, com saldo acumulado, concentração de caixa por banco e abertura de entradas e saídas por subgrupo. Inclui tratamento explícito de mês parcial, que é excluído das médias e tendências.",
