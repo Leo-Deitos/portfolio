@@ -20,7 +20,7 @@ window.CONTEUDO_PADRAO = {
     "botaoHref": "#sobre-mim",
     "botaoSecundarioTexto": "Ver projetos",
     "botaoSecundarioHref": "#projetos",
-    "foto": "assets/img/perfil.webp",
+    "foto": "assets/img/perfil-2.webp",
     "fotoAlt": "Foto de Leomar Deitos"
   },
   "sobre": {
