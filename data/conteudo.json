@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "atualizadoEm": "2026-10-10",
+  "atualizadoEm": "2026-10-11",
   "site": {
     "titulo": "Leomar Deitos — Analista de Dados e Especialista em Power BI",
     "descricao": "Especialista em Power BI. Dashboards interativos e automatizados para Financeiro, Logística, RH, Vendas e Contábil.",
@@ -183,6 +183,26 @@
         ],
         "imagem": "assets/projetos/Financeiro-Distribuidora.webp",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiYjY0NTk2OWQtNjA1Yi00YjgyLWJkZTAtOWU1YjRkYWU4NjI5IiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "jev-rede-lojas",
+        "titulo": "Jev Rede de Lojas",
+        "tipo": "html",
+        "area": "Varejo",
+        "descricao": "Painel interativo de uma rede de 40 lojas (dados fictícios) que combina os números das planilhas com a leitura de texto do Jev, modelo de IA da TypeSafe. O Jev lê o relatório do gerente, o pós-venda e as avaliações de clientes e devolve, para cada loja e mês, a principal causa do resultado, a gravidade, o risco de piora e a probabilidade de precisar de acompanhamento humano. A tabela Rede completa separa causa clara, provável e incerta e avisa quando a meta foi reduzida.",
+        "indicadores": [
+          "Atingimento da meta",
+          "Principal causa (Jev)",
+          "Risco e gravidade (Jev)",
+          "Probabilidade de revisão humana",
+          "Clareza da causa",
+          "Pós-venda por tipo"
+        ],
+        "imagem": "assets/projetos/Jev-Rede-de-Lojas.webp",
+        "link": "assets/embeds/jev-rede-lojas.html",
         "botao": "Ver detalhes",
         "embed": true,
         "visivel": true

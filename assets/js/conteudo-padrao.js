@@ -4,7 +4,7 @@
    O admin republica este arquivo junto com o JSON. */
 window.CONTEUDO_PADRAO = {
   "versao": 1,
-  "atualizadoEm": "2026-09-13",
+  "atualizadoEm": "2026-10-11",
   "site": {
     "titulo": "Leomar Deitos — Analista de Dados e Especialista em Power BI",
     "descricao": "Especialista em Power BI. Dashboards interativos e automatizados para Financeiro, Logística, RH, Vendas e Contábil.",
@@ -168,6 +168,45 @@ window.CONTEUDO_PADRAO = {
         ],
         "imagem": "",
         "link": "https://app.powerbi.com/view?r=eyJrIjoiOGJlZDVhYTUtODk0NC00Njc0LTg5NjAtOTY1NGM2OTlmMTgwIiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "distribuidora",
+        "titulo": "Painel Financeiro Distribuidora",
+        "tipo": "powerbi",
+        "area": "Financeiro",
+        "descricao": "Painel financeiro gerencial de uma distribuidora atacadista (dados fictícios), em cinco páginas: fluxo de caixa projetado em 13 semanas com filtros por ano e mês, contas a receber por faixa de atraso, DRE gerencial da receita ao resultado líquido, glossário de métricas e uma análise escrita por fórmulas que se atualiza com os dados. Tema escuro e claro, visuais nativos e modelo sobre SQL Server.",
+        "indicadores": [
+          "Saldo de caixa e projeção de 13 semanas",
+          "Aging do contas a receber",
+          "% vencido e mais de 90 dias",
+          "Margem bruta e operacional",
+          "DRE: receita ao resultado líquido"
+        ],
+        "imagem": "assets/projetos/Financeiro-Distribuidora.webp",
+        "link": "https://app.powerbi.com/view?r=eyJrIjoiYjY0NTk2OWQtNjA1Yi00YjgyLWJkZTAtOWU1YjRkYWU4NjI5IiwidCI6IjM1YzhhZGMwLWVlNWYtNGNjMC05Mzc4LWRhNzMyNzFmY2Q3NiJ9",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "jev-rede-lojas",
+        "titulo": "Jev Rede de Lojas",
+        "tipo": "html",
+        "area": "Varejo",
+        "descricao": "Painel interativo de uma rede de 40 lojas (dados fictícios) que combina os números das planilhas com a leitura de texto do Jev, modelo de IA da TypeSafe. O Jev lê o relatório do gerente, o pós-venda e as avaliações de clientes e devolve, para cada loja e mês, a principal causa do resultado, a gravidade, o risco de piora e a probabilidade de precisar de acompanhamento humano. A tabela Rede completa separa causa clara, provável e incerta e avisa quando a meta foi reduzida.",
+        "indicadores": [
+          "Atingimento da meta",
+          "Principal causa (Jev)",
+          "Risco e gravidade (Jev)",
+          "Probabilidade de revisão humana",
+          "Clareza da causa",
+          "Pós-venda por tipo"
+        ],
+        "imagem": "assets/projetos/Jev-Rede-de-Lojas.webp",
+        "link": "assets/embeds/jev-rede-lojas.html",
         "botao": "Ver detalhes",
         "embed": true,
         "visivel": true
