@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "atualizadoEm": "2026-10-11",
+  "atualizadoEm": "2026-10-21",
   "site": {
     "titulo": "Leomar Deitos — Analista de Dados e Especialista em Power BI",
     "descricao": "Especialista em Power BI. Dashboards interativos e automatizados para Financeiro, Logística, RH, Vendas e Contábil.",
@@ -203,6 +203,25 @@
         ],
         "imagem": "assets/projetos/Jev-Rede-de-Lojas.webp",
         "link": "assets/embeds/jev-rede-lojas.html",
+        "botao": "Ver detalhes",
+        "embed": true,
+        "visivel": true
+      },
+      {
+        "id": "vendas-eletronicos",
+        "titulo": "Vendas de Eletrônicos",
+        "tipo": "html",
+        "area": "Vendas",
+        "descricao": "Painel de 4.146 vendas de eletrônicos (dados fictícios, jan/2021 a jun/2023) construído sobre uma base tratada em Python: chave única criada para ordens de compra repetidas, texto corrompido corrigido e vendas revertidas separadas em faturamento bruto e líquido. Cada número do painel é conferido automaticamente contra a planilha original. Filtros cruzados e tema claro/escuro.",
+        "indicadores": [
+          "Faturamento líquido x bruto",
+          "Devoluções e desistências",
+          "Ticket médio",
+          "Comparativo jan–jun",
+          "Ranking por produto e estado"
+        ],
+        "imagem": "assets/projetos/Vendas-de-Eletronicos.webp",
+        "link": "assets/embeds/vendas-eletronicos.html",
         "botao": "Ver detalhes",
         "embed": true,
         "visivel": true
